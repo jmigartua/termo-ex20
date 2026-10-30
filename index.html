@@ -1,0 +1,1167 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>Second law, exercise 20</title>
+<meta name="description" content="Exercise 20 of topic 6: a real gas expands in contact with a reservoir at 300 K, lifting a load or not, and is brought back by a reversible isotherm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Family kit tokens with this project's two reservoirs: a cold blue and a heat red. */
+:root {
+  --paper: #ffffff; --tint: #f6f5f2; --ink: #22262b; --ink-soft: #565c64; --ink-faint: #7f858d;
+  --line: #dbd8d2; --line-soft: #eae7e1;
+  --blue: #2c5aa0; --blue-soft: #4772b8; --blue-tint: #eef3fa;
+  --heat: #a8432a; --heat-tint: #fbf1ee; --work: #2e6b5e; --work-tint: #e3efeb;
+  --gas: #e9e3d4; --gas-cold: #b9cdea; --metal: #8d939b; --metal-dark: #5d636b; --cord: #6b5a3e;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #15171a; --tint: #1c1f23; --ink: #e8e6e1; --ink-soft: #b6b3ad; --ink-faint: #8b8983;
+    --line: #33373d; --line-soft: #272b30;
+    --blue: #8fb3e8; --blue-soft: #a9c5ee; --blue-tint: #18202c;
+    --heat: #e79a84; --heat-tint: #2a1c18; --work: #7fc4b3; --work-tint: #17262a;
+    --gas: #3a362d; --gas-cold: #2b4466; --metal: #6c727a; --metal-dark: #a4aab2; --cord: #c9b48c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #15171a; --tint: #1c1f23; --ink: #e8e6e1; --ink-soft: #b6b3ad; --ink-faint: #8b8983;
+  --line: #33373d; --line-soft: #272b30;
+  --blue: #8fb3e8; --blue-soft: #a9c5ee; --blue-tint: #18202c;
+  --heat: #e79a84; --heat-tint: #2a1c18; --work: #7fc4b3; --work-tint: #17262a;
+  --gas: #3a362d; --gas-cold: #2b4466; --metal: #6c727a; --metal-dark: #a4aab2; --cord: #c9b48c;
+}
+
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 28px 48px; }
+h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.sub { color: var(--ink-soft); font-size: 17px; margin: 6px 0 0; max-width: 70ch; }
+.lbl { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 4px; }
+.box { padding: 12px 18px 6px; border-left: 3px solid var(--blue); background: var(--blue-tint); margin: 20px 0 8px; max-width: 78ch; }
+.box p { margin: 0 0 8px; }
+details.orig { margin: 0 0 20px; max-width: 78ch; }
+details.orig summary { cursor: pointer; color: var(--ink-faint); font-size: 14px; }
+details.orig p { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); border-left: 2px solid var(--line); padding-left: 16px; }
+.lede { max-width: 78ch; margin: 18px 0 22px; }
+.lede b { font-weight: 600; }
+
+.panels { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 880px) { .panels { grid-template-columns: minmax(0, 1fr); } }
+.panel { border: 1px solid var(--line); background: var(--paper); padding: 14px 14px 10px; min-width: 0; }
+.panel h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 0 0 2px; }
+.panel .cap { font-size: 14px; color: var(--ink-soft); margin: 0 0 8px; }
+.panel svg { display: block; width: 100%; height: auto; }
+svg text { font-family: var(--sans); fill: var(--ink-soft); }
+svg .mono { font-family: var(--mono); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--ink-soft); margin: 6px 0 2px; }
+.legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { display: inline-block; width: 26px; height: 0; border-top: 2.5px solid; }
+.sw.dot { border-top-style: dotted; border-color: var(--heat); }
+.sw.rev { border-color: var(--blue); }
+.sw.fill { height: 12px; border: 1px solid var(--work); background: var(--work-tint); width: 18px; }
+.sw.hatch { height: 12px; width: 18px; border: 1px solid var(--heat); background: repeating-linear-gradient(135deg, var(--heat-tint) 0 3px, color-mix(in srgb, var(--heat) 45%, transparent) 3px 4px); }
+
+.controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 24px; align-items: end; margin: 22px 0 10px; padding: 14px 16px; background: var(--tint); border: 1px solid var(--line-soft); }
+@media (max-width: 700px) { .controls { grid-template-columns: minmax(0, 1fr); } }
+.load-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.load-row input[type=range] { flex: 1 1 220px; accent-color: var(--work); min-width: 0; }
+.load-val { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; min-width: 17ch; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+button { font-family: var(--sans); font-size: 14.5px; font-weight: 600; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 6px 12px; border-radius: 3px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--blue); }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+button:disabled { opacity: 0.45; cursor: default; }
+button.go1 { color: var(--heat); border-color: color-mix(in srgb, var(--heat) 50%, var(--line)); }
+button.go2 { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 50%, var(--line)); }
+button.small { font-size: 13px; font-weight: 400; padding: 3px 9px; }
+button.small[aria-pressed="true"] { border-color: var(--work); color: var(--work); font-weight: 600; }
+.actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.actions .row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+@media (max-width: 700px) { .actions { align-items: stretch; } .actions .row { justify-content: flex-start; } }
+
+.ledger-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 0; }
+.ledger-head h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 0; }
+.ledger-wrap { overflow-x: auto; margin: 6px 0 0; }
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 560px; width: 100%; }
+th { text-align: right; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); padding: 8px 0 8px 18px; border-bottom: 1px solid var(--ink); font-weight: 600; }
+th:first-child, td:first-child { text-align: left; padding-left: 0; }
+td { text-align: right; padding: 7px 0 7px 18px; border-bottom: 1px solid var(--line-soft); font-family: var(--mono); font-size: 14px; }
+td:first-child { font-family: var(--sans); font-size: 15px; }
+th.p1 { color: var(--heat); } th.p2 { color: var(--blue); }
+tr.univ td { font-weight: 500; border-bottom: 1px solid var(--ink-faint); }
+tr.univ td:first-child { font-weight: 600; }
+.verdict { margin: 14px 0 0; padding: 10px 16px; border-left: 3px solid var(--heat); background: var(--heat-tint); max-width: 90ch; }
+.hidden-note { margin: 8px 0 0; font-size: 14px; color: var(--ink-faint); font-style: italic; }
+.notes { margin-top: 26px; font-size: 14.5px; color: var(--ink-soft); max-width: 90ch; }
+.notes h3 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin: 0 0 6px; }
+.notes ul { padding-left: 20px; margin: 0; display: grid; gap: 4px; }
+sub, sup { line-height: 0; }
+
+.langbar { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 14px 0; display: flex; justify-content: flex-end; gap: 6px; }
+.langbar button { font-size: 13px; font-weight: 600; padding: 3px 10px; letter-spacing: 0.04em; }
+.langbar button[aria-pressed="true"] { border-color: var(--blue); color: var(--blue); }
+.wrap { padding-block: 8px 48px; }
+</style>
+
+<div class="langbar" role="group" aria-label="Language / Hizkuntza">
+  <button id="langEN" aria-pressed="true" lang="en">EN</button>
+  <button id="langEU" aria-pressed="false" lang="eu">EU</button>
+</div>
+<div id="root"></div>
+<template id="tpl-en"><div class="wrap">
+  <span class="lbl">Thermodynamics · topic 6, the second law · exercise 20</span>
+  <h1>A real gas expands and is brought back</h1>
+  <p class="sub">The statement's free expansion, the reversible isotherm that undoes it, and what changes when the expansion is made to lift a load.</p>
+
+  <div class="box">
+    <span class="lbl" style="color:var(--blue)">Statement</span>
+    <p>The <b>real gas</b> under study expands <b>freely</b>, in thermal contact with a heat reservoir at <i>T</i> = 300 K. In this process it absorbs <i>Q</i> = 50 J. After this first process the gas is compressed <b>isothermally and reversibly</b> until it recovers its initial state. In this second process the gas gives off <b>300 J</b>.</p>
+    <p>Obtain: 1. the entropy change of the gas in the first process; 2. the work done by the gas in the second process.</p>
+  </div>
+  <details class="orig"><summary>Original (Basque)</summary>
+    <p>Aztertu beharreko gas erreala era askean zabaldu da, <i>T</i>=300 K-eko bero-iturriarekin ukipen termikoan. Prozesu horretan xurgatu duen beroa da <i>Q</i>=50 J. Lehenengo prozesu horren ondoren, gasa konprimitu dugu, era isotermo itzulgarrian; hasierako egoera berreskuratu arte. Bigarren prozesu horretan, gasak 300 J kanporatu du. Lortu honako hauek: gasaren entropia-aldaketa, lehenengo prozesuan; gasak egindako lana, bigarren prozesuan.</p>
+  </details>
+
+  <p class="lede">The two states, <b>i</b> and <b>f</b>, are fixed, and so is everything the gas owns: Δ<i>U</i> = +50 J and Δ<i>S</i> = +1 J/K from i to f. What the expansion does to its surroundings is not fixed. With no load on the piston (the statement), nothing is lifted. With a load of mass <i>M</i>, the gas lifts it, the reservoir pays for that work as extra heat, and the entropy of the universe rises by less.</p>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="h-app">
+      <h2 id="h-app">The apparatus</h2>
+      <p class="cap">A cylinder in the reservoir, a piston with vacuum behind it, a cord over a pulley to the load.</p>
+      <svg id="app" viewBox="0 100 680 480" role="img" aria-label="Cylinder in a heat reservoir; the piston is tied by a cord over a pulley to a hanging load">
+        <defs>
+          <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="7" height="7" fill="var(--heat-tint)"/>
+            <line x1="0" y1="0" x2="0" y2="7" stroke="var(--heat)" stroke-opacity="0.35" stroke-width="1.4"/>
+          </pattern>
+          <pattern id="sand" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="var(--metal)"/>
+            <circle cx="1.5" cy="1.5" r="0.9" fill="var(--paper)" fill-opacity="0.35"/>
+          </pattern>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--heat)"/>
+          </marker>
+        </defs>
+        <!-- reservoir -->
+        <rect x="24" y="112" width="372" height="176" fill="url(#hatch)" stroke="var(--heat)" stroke-width="1.2"/>
+        <text x="34" y="132" style="fill:var(--heat);font-weight:600;font-size:14px">Reservoir · 300 K</text>
+        <g id="heat" opacity="0"></g>
+        <!-- cylinder walls -->
+        <rect x="52" y="162" width="323" height="8" fill="var(--metal)"/>
+        <rect x="52" y="230" width="323" height="8" fill="var(--metal)"/>
+        <rect x="52" y="162" width="8" height="76" fill="var(--metal)"/>
+        <rect x="367" y="162" width="8" height="30" fill="var(--metal)"/>
+        <rect x="367" y="208" width="8" height="30" fill="var(--metal)"/>
+        <!-- gas and vacuum -->
+        <rect id="gas" x="60" y="170" width="120" height="60" fill="var(--gas)"/>
+        <text x="72" y="205" style="font-size:14px;fill:var(--ink)">gas</text>
+        <text id="vacLbl" x="250" y="188" style="font-size:12.5px;fill:var(--ink-faint);font-style:italic">vacuum</text>
+        <!-- stop at f -->
+        <rect x="358" y="170" width="6" height="9" fill="var(--metal-dark)"/>
+        <rect x="358" y="221" width="6" height="9" fill="var(--metal-dark)"/>
+        <text x="361" y="150" text-anchor="middle" style="font-size:11.5px;fill:var(--ink-faint)">stop</text>
+        <!-- latch at i -->
+        <rect id="latchT" x="196" y="170" width="6" height="9" fill="var(--heat)"/>
+        <rect id="latchB" x="196" y="221" width="6" height="9" fill="var(--heat)"/>
+        <text id="latchLbl" x="199" y="150" text-anchor="middle" style="font-size:11.5px;fill:var(--heat)">latch</text>
+        <!-- piston and rod -->
+        <g id="piston">
+          <rect x="0" y="171" width="14" height="58" fill="var(--metal-dark)"/>
+          <rect x="14" y="196" width="230" height="8" fill="var(--metal)"/>
+          <circle cx="244" cy="200" r="3.5" fill="var(--metal-dark)"/>
+        </g>
+        <!-- pulley stand, buffer -->
+        <line x1="610" y1="220" x2="610" y2="118" stroke="var(--metal)" stroke-width="3"/>
+        <line x1="580" y1="118" x2="640" y2="118" stroke="var(--metal-dark)" stroke-width="3"/>
+        <g id="buffer">
+          <rect x="590" y="311" width="34" height="6" fill="var(--metal-dark)"/>
+          <rect x="636" y="311" width="34" height="6" fill="var(--metal-dark)"/>
+          <line x1="590" y1="311" x2="590" y2="580" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="670" y1="311" x2="670" y2="580" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="584" y="317" text-anchor="end" style="font-size:11.5px;fill:var(--ink-faint)">buffer</text>
+        </g>
+        <!-- cord -->
+        <path id="cordH" fill="none" stroke="var(--cord)" stroke-width="2" stroke-dasharray="9 5"/>
+        <path id="cordV" fill="none" stroke="var(--cord)" stroke-width="2" stroke-dasharray="9 5"/>
+        <!-- pulley -->
+        <circle cx="610" cy="220" r="20" fill="var(--paper)" stroke="var(--metal-dark)" stroke-width="3"/>
+        <g id="spokes">
+          <line x1="594" y1="220" x2="626" y2="220" stroke="var(--metal-dark)" stroke-width="2"/>
+          <line x1="610" y1="204" x2="610" y2="236" stroke="var(--metal-dark)" stroke-width="2"/>
+        </g>
+        <circle cx="610" cy="220" r="3.5" fill="var(--metal-dark)"/>
+        <!-- load -->
+        <g id="load">
+          <rect x="598" y="0" width="64" height="38" rx="2" fill="url(#sand)" stroke="var(--metal-dark)"/>
+          <text id="loadTxt" x="630" y="24" text-anchor="middle" class="mono" style="font-size:12px;fill:var(--paper);font-weight:500">0 kg</text>
+        </g>
+        <text id="noLoad" x="630" y="420" text-anchor="middle" style="font-size:12.5px;fill:var(--ink-faint);font-style:italic">no load</text>
+        <!-- height ruler -->
+        <g id="ruler">
+          <line id="rulerLine" x1="676" x2="676" stroke="var(--work)" stroke-width="1.5"/>
+          <line x1="671" x2="681" y1="530" y2="530" stroke="var(--work)" stroke-width="1.5"/>
+          <line id="rulerTop" x1="671" x2="681" stroke="var(--work)" stroke-width="1.5"/>
+        </g>
+        <!-- readouts -->
+        <g class="mono" style="font-size:13.5px">
+          <text x="24" y="336" style="fill:var(--ink-faint);font-family:var(--sans);font-size:11.5px;letter-spacing:.08em">NOW</text>
+          <text id="r1" x="24" y="360" style="fill:var(--ink)"></text>
+          <text id="r2" x="24" y="384" style="fill:var(--work)"></text>
+          <text id="r3" x="24" y="408" style="fill:var(--heat)"></text>
+          <text id="r4" x="24" y="438" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+          <text id="r5" x="24" y="456" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="panel" aria-labelledby="h-pv">
+      <h2 id="h-pv">The states: p–V plane</h2>
+      <p class="cap">Equilibrium states only. The irreversible process 1 has none between i and f.</p>
+      <svg id="pv" viewBox="0 0 520 410" role="img" aria-label="Pressure against volume: states i and f, the dotted irreversible process 1 and the reversible isotherm 2 from f back to i">
+        <g id="pvAxes"></g>
+        <path id="aRev" fill="url(#hatch)" stroke="none"/>
+        <rect id="aWork" fill="var(--work-tint)" stroke="var(--work)" stroke-width="1.5" fill-opacity="0.92"/>
+        <path id="isoFaint" fill="none" stroke="var(--blue)" stroke-opacity="0.3" stroke-width="1.5"/>
+        <path id="iso" fill="none" stroke="var(--blue)" stroke-width="2.6"/>
+        <path id="isoArrow" fill="var(--blue)"/>
+        <line id="dot1" stroke="var(--heat)" stroke-width="2.6" stroke-dasharray="1.5 6" stroke-linecap="round"/>
+        <path id="dotArrow" fill="var(--heat)"/>
+        <line id="vNow" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4" opacity="0"/>
+        <text id="vNowLbl" style="font-size:12px;fill:var(--ink-faint);font-style:italic" opacity="0">V known, p not defined</text>
+        <circle id="mark" r="6" fill="var(--blue)" stroke="var(--paper)" stroke-width="2" opacity="0"/>
+        <g id="pts"></g>
+        <text id="tRev" style="font-size:13px;fill:var(--heat)"></text>
+        <text id="tWork" style="font-size:13px;fill:var(--work);font-weight:600"></text>
+      </svg>
+      <div class="legend">
+        <span><i class="sw dot"></i>1 · irreversible, i → f</span>
+        <span><i class="sw rev"></i>2 · reversible isotherm, f → i</span>
+        <span><i class="sw fill"></i><span>work stored in the load, <i>Mg</i>Δ<i>h</i></span></span>
+        <span><i class="sw hatch"></i><span>work lost, <i>T</i>Δ<i>S</i><sub>univ</sub></span></span>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div>
+      <label class="lbl" for="mass">Load on the piston during process 1</label>
+      <div class="load-row">
+        <input type="range" id="mass" min="0" max="36.6" step="0.01" value="0">
+        <span class="load-val" id="massVal">0.0 kg · 0.0 bar</span>
+      </div>
+      <div class="presets">
+        <button class="small" id="pFree" aria-pressed="true">No load (the statement)</button>
+        <button class="small" id="pHalf" aria-pressed="false">Half load</button>
+        <button class="small" id="pFull" aria-pressed="false">Heaviest load that still reaches f</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="row">
+        <button class="go1" id="b1">1 · Release the latch</button>
+        <button class="go2" id="b2" disabled>2 · Compress reversibly</button>
+        <button id="b0">Reset</button>
+      </div>
+      <div class="row">
+        <button class="small" id="sReal" aria-pressed="true">Real time</button>
+        <button class="small" id="sSlow" aria-pressed="false">Slow motion, ×1/5</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-head">
+    <h2>Energy and entropy</h2>
+    <button class="small" id="ledgerBtn" aria-expanded="true" aria-controls="ledgerBody">Hide</button>
+  </div>
+  <p class="hidden-note" id="ledgerNote" hidden>Hidden. Show it when the class is ready for the balance.</p>
+  <div id="ledgerBody">
+    <div class="ledger-wrap">
+      <table aria-label="Energy and entropy of each process and of the cycle">
+        <thead><tr><th></th><th class="p1">1 · irreversible</th><th class="p2">2 · reversible</th><th>cycle</th></tr></thead>
+        <tbody>
+          <tr><td>Δ<i>U</i> of the gas</td><td>+50.0 J</td><td>−50.0 J</td><td>0 J</td></tr>
+          <tr><td>Work stored in the load, <i>Mg</i>Δ<i>h</i></td><td id="w1"></td><td>−250.0 J</td><td id="wc"></td></tr>
+          <tr><td>Net heat from the reservoir</td><td id="q1"></td><td>−300.0 J</td><td id="qc"></td></tr>
+          <tr><td>Δ<i>S</i> of the gas</td><td>+1.000 J/K</td><td>−1.000 J/K</td><td>0 J/K</td></tr>
+          <tr><td>Δ<i>S</i> of the reservoir</td><td id="s1"></td><td>+1.000 J/K</td><td id="sc"></td></tr>
+          <tr class="univ"><td>Δ<i>S</i> of the universe</td><td id="u1"></td><td>0 J/K</td><td id="uc"></td></tr>
+          <tr><td>Work lost, <i>T</i>Δ<i>S</i><sub>univ</sub></td><td id="l1"></td><td>0 J</td><td id="lc"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+
+  <div class="notes">
+    <h3>The model behind the drawing</h3>
+    <ul>
+      <li>The statement gives no equation of state. The drawing uses an abstract van der Waals gas, not any particular substance: <i>n</i> = 0.125 mol, <i>a</i> = 0.2 Pa m⁶ mol⁻², <i>b</i> = 5 × 10⁻⁵ m³ mol⁻¹, with <i>V</i><sub>i</sub> = 35.73 cm³ and <i>V</i><sub>f</sub> = 83.40 cm³ chosen so that its 300 K isotherm gives Δ<i>U</i> = 50 J, Δ<i>S</i> = 1 J/K and 250 J of work exactly. Another gas would draw other curves, but the ledger would be the same: it uses only the statement's numbers and <i>Mg</i>Δ<i>h</i>.</li>
+      <li>The piston's area is 1 cm², so the stroke is 47.7 cm and the load rises by as much. Behind the piston there is vacuum, so the only load is <i>Mg</i> and <i>p</i><sub>ext</sub> = <i>Mg</i>/<i>A</i>. Friction is ignored. A load heavier than <i>p</i><sub>f</sub><i>A</i>/<i>g</i> = 36.6 kg would stop the piston before f, so one load step stores at most <i>p</i><sub>f</sub>(<i>V</i><sub>f</sub> − <i>V</i><sub>i</sub>) = 171.3 J, short of the 250 J of the reversible expansion.</li>
+      <li>The release is computed, not drawn by hand. The piston (0.5 kg) and the load hang on an elastic cord (40 kN/m, slightly lossy). The gas pushes the piston with the isotherm's pressure, less a drag of 70 N s/m for its internal friction, where the irreversibility actually lives. This only shapes the motion: in the rush the gas has no single pressure. The piston hits the stop and rebounds a little. The load runs on, the cord goes slack, the load reaches the buffer 15 cm above or falls back, snaps the cord taut, and bobs until the cord's losses still it.</li>
+      <li>All that kinetic energy ends as heat in the 300 K surroundings, counted here with the reservoir. The reservoir's net heat is therefore Δ<i>U</i> + <i>Mg</i>Δ<i>h</i> however the piston and the load moved.</li>
+      <li>In process 2 sand is added grain by grain, so the load always balances the gas: <i>M</i> = <i>p</i>(<i>V</i>)<i>A</i>/<i>g</i>, from 36.6 kg to 82.9 kg. The descending load does 250 J of work on the gas.</li>
+      <li>The course page prints Δ<i>S</i><sub>1</sub> = 10/3 J/K. The statement's own numbers give 1 J/K: the reversible return gives off 300 J at 300 K.</li>
+    </ul>
+  </div>
+</div>
+
+</template>
+<template id="tpl-eu"><div class="wrap">
+  <span class="lbl">Termodinamika · 6. gaia, bigarren printzipioa · 20. ariketa</span>
+  <h1>Gas erreal bat zabaldu, eta hasierako egoerara itzuli</h1>
+  <p class="sub">Enuntziatuko hedapen askea, hura desegiten duen isoterma itzulgarria, eta zer aldatzen den hedapenak zama bat altxatzen duenean.</p>
+
+  <div class="box">
+    <span class="lbl" style="color:var(--blue)">Enuntziatua</span>
+    <p>Aztertu beharreko gas erreala era askean zabaldu da, <i>T</i>=300 K-eko bero-iturriarekin ukipen termikoan. Prozesu horretan xurgatu duen beroa da <i>Q</i>=50 J. Lehenengo prozesu horren ondoren, gasa konprimitu dugu, era isotermo itzulgarrian; hasierako egoera berreskuratu arte. Bigarren prozesu horretan, gasak 300 J kanporatu du. Lortu honako hauek: gasaren entropia-aldaketa, lehenengo prozesuan; gasak egindako lana, bigarren prozesuan.</p>
+  </div>
+
+  <p class="lede">Bi egoerak, <b>i</b> eta <b>f</b>, finkoak dira, eta gasari dagokion guztia ere bai: Δ<i>U</i> = +50 J eta Δ<i>S</i> = +1 J/K, i-tik f-ra. Hedapenak ingurunean eragiten duena, ordea, ez dago finkatuta. Pistoiaren gainean zamarik ez badago (enuntziatuko kasua), ez da ezer altxatzen. <i>M</i> masako zama bat badago, gasak altxatu egiten du; bero-iturriak ordaintzen du lan hori, bero gehigarri gisa, eta unibertsoaren entropia gutxiago handitzen da.</p>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="h-app">
+      <h2 id="h-app">Aparatua</h2>
+      <p class="cap">Zilindro bat bero-iturrian, pistoi bat atzean hutsa duela, eta soka bat, txirrika baten gainetik, zamaraino.</p>
+      <svg id="app" viewBox="0 100 680 480" role="img" aria-label="Zilindroa bero-iturri batean; pistoia soka batez lotuta dago, txirrika baten gainetik, zintzilik dagoen zama bati">
+        <defs>
+          <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="7" height="7" fill="var(--heat-tint)"/>
+            <line x1="0" y1="0" x2="0" y2="7" stroke="var(--heat)" stroke-opacity="0.35" stroke-width="1.4"/>
+          </pattern>
+          <pattern id="sand" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="var(--metal)"/>
+            <circle cx="1.5" cy="1.5" r="0.9" fill="var(--paper)" fill-opacity="0.35"/>
+          </pattern>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--heat)"/>
+          </marker>
+        </defs>
+        <!-- reservoir -->
+        <rect x="24" y="112" width="372" height="176" fill="url(#hatch)" stroke="var(--heat)" stroke-width="1.2"/>
+        <text x="34" y="132" style="fill:var(--heat);font-weight:600;font-size:14px">Bero-iturria · 300 K</text>
+        <g id="heat" opacity="0"></g>
+        <!-- cylinder walls -->
+        <rect x="52" y="162" width="323" height="8" fill="var(--metal)"/>
+        <rect x="52" y="230" width="323" height="8" fill="var(--metal)"/>
+        <rect x="52" y="162" width="8" height="76" fill="var(--metal)"/>
+        <rect x="367" y="162" width="8" height="30" fill="var(--metal)"/>
+        <rect x="367" y="208" width="8" height="30" fill="var(--metal)"/>
+        <!-- gas and vacuum -->
+        <rect id="gas" x="60" y="170" width="120" height="60" fill="var(--gas)"/>
+        <text x="72" y="205" style="font-size:14px;fill:var(--ink)">gasa</text>
+        <text id="vacLbl" x="250" y="188" style="font-size:12.5px;fill:var(--ink-faint);font-style:italic">hutsa</text>
+        <!-- stop at f -->
+        <rect x="358" y="170" width="6" height="9" fill="var(--metal-dark)"/>
+        <rect x="358" y="221" width="6" height="9" fill="var(--metal-dark)"/>
+        <text x="361" y="150" text-anchor="middle" style="font-size:11.5px;fill:var(--ink-faint)">topea</text>
+        <!-- latch at i -->
+        <rect id="latchT" x="196" y="170" width="6" height="9" fill="var(--heat)"/>
+        <rect id="latchB" x="196" y="221" width="6" height="9" fill="var(--heat)"/>
+        <text id="latchLbl" x="199" y="150" text-anchor="middle" style="font-size:11.5px;fill:var(--heat)">krisketa</text>
+        <!-- piston and rod -->
+        <g id="piston">
+          <rect x="0" y="171" width="14" height="58" fill="var(--metal-dark)"/>
+          <rect x="14" y="196" width="230" height="8" fill="var(--metal)"/>
+          <circle cx="244" cy="200" r="3.5" fill="var(--metal-dark)"/>
+        </g>
+        <!-- pulley stand, buffer -->
+        <line x1="610" y1="220" x2="610" y2="118" stroke="var(--metal)" stroke-width="3"/>
+        <line x1="580" y1="118" x2="640" y2="118" stroke="var(--metal-dark)" stroke-width="3"/>
+        <g id="buffer">
+          <rect x="590" y="311" width="34" height="6" fill="var(--metal-dark)"/>
+          <rect x="636" y="311" width="34" height="6" fill="var(--metal-dark)"/>
+          <line x1="590" y1="311" x2="590" y2="580" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="670" y1="311" x2="670" y2="580" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="584" y="317" text-anchor="end" style="font-size:11.5px;fill:var(--ink-faint)">moteltzailea</text>
+        </g>
+        <!-- cord -->
+        <path id="cordH" fill="none" stroke="var(--cord)" stroke-width="2" stroke-dasharray="9 5"/>
+        <path id="cordV" fill="none" stroke="var(--cord)" stroke-width="2" stroke-dasharray="9 5"/>
+        <!-- pulley -->
+        <circle cx="610" cy="220" r="20" fill="var(--paper)" stroke="var(--metal-dark)" stroke-width="3"/>
+        <g id="spokes">
+          <line x1="594" y1="220" x2="626" y2="220" stroke="var(--metal-dark)" stroke-width="2"/>
+          <line x1="610" y1="204" x2="610" y2="236" stroke="var(--metal-dark)" stroke-width="2"/>
+        </g>
+        <circle cx="610" cy="220" r="3.5" fill="var(--metal-dark)"/>
+        <!-- load -->
+        <g id="load">
+          <rect x="598" y="0" width="64" height="38" rx="2" fill="url(#sand)" stroke="var(--metal-dark)"/>
+          <text id="loadTxt" x="630" y="24" text-anchor="middle" class="mono" style="font-size:12px;fill:var(--paper);font-weight:500">0 kg</text>
+        </g>
+        <text id="noLoad" x="630" y="420" text-anchor="middle" style="font-size:12.5px;fill:var(--ink-faint);font-style:italic">zamarik gabe</text>
+        <!-- height ruler -->
+        <g id="ruler">
+          <line id="rulerLine" x1="676" x2="676" stroke="var(--work)" stroke-width="1.5"/>
+          <line x1="671" x2="681" y1="530" y2="530" stroke="var(--work)" stroke-width="1.5"/>
+          <line id="rulerTop" x1="671" x2="681" stroke="var(--work)" stroke-width="1.5"/>
+        </g>
+        <!-- readouts -->
+        <g class="mono" style="font-size:13.5px">
+          <text x="24" y="336" style="fill:var(--ink-faint);font-family:var(--sans);font-size:11.5px;letter-spacing:.08em">ORAIN</text>
+          <text id="r1" x="24" y="360" style="fill:var(--ink)"></text>
+          <text id="r2" x="24" y="384" style="fill:var(--work)"></text>
+          <text id="r3" x="24" y="408" style="fill:var(--heat)"></text>
+          <text id="r4" x="24" y="438" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+          <text id="r5" x="24" y="456" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="panel" aria-labelledby="h-pv">
+      <h2 id="h-pv">Egoerak: p–V planoa</h2>
+      <p class="cap">Oreka-egoerak baino ez. 1. prozesu itzulezinak ez du halakorik i-ren eta f-ren artean.</p>
+      <svg id="pv" viewBox="0 0 520 410" role="img" aria-label="Presioa bolumenaren aurrean: i eta f egoerak, 1. prozesu itzulezina (puntuz) eta 2. isoterma itzulgarria, f-tik i-ra">
+        <g id="pvAxes"></g>
+        <path id="aRev" fill="url(#hatch)" stroke="none"/>
+        <rect id="aWork" fill="var(--work-tint)" stroke="var(--work)" stroke-width="1.5" fill-opacity="0.92"/>
+        <path id="isoFaint" fill="none" stroke="var(--blue)" stroke-opacity="0.3" stroke-width="1.5"/>
+        <path id="iso" fill="none" stroke="var(--blue)" stroke-width="2.6"/>
+        <path id="isoArrow" fill="var(--blue)"/>
+        <line id="dot1" stroke="var(--heat)" stroke-width="2.6" stroke-dasharray="1.5 6" stroke-linecap="round"/>
+        <path id="dotArrow" fill="var(--heat)"/>
+        <line id="vNow" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="4 4" opacity="0"/>
+        <text id="vNowLbl" style="font-size:12px;fill:var(--ink-faint);font-style:italic" opacity="0">V ezaguna, p definitu gabe</text>
+        <circle id="mark" r="6" fill="var(--blue)" stroke="var(--paper)" stroke-width="2" opacity="0"/>
+        <g id="pts"></g>
+        <text id="tRev" style="font-size:13px;fill:var(--heat)"></text>
+        <text id="tWork" style="font-size:13px;fill:var(--work);font-weight:600"></text>
+      </svg>
+      <div class="legend">
+        <span><i class="sw dot"></i>1 · itzulezina, i → f</span>
+        <span><i class="sw rev"></i>2 · isoterma itzulgarria, f → i</span>
+        <span><i class="sw fill"></i><span>zaman metatutako lana, <i>Mg</i>Δ<i>h</i></span></span>
+        <span><i class="sw hatch"></i><span>lan galdua, <i>T</i>Δ<i>S</i><sub>univ</sub></span></span>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div>
+      <label class="lbl" for="mass">Pistoiaren gaineko zama 1. prozesuan</label>
+      <div class="load-row">
+        <input type="range" id="mass" min="0" max="36.6" step="0.01" value="0">
+        <span class="load-val" id="massVal">0.0 kg · 0.0 bar</span>
+      </div>
+      <div class="presets">
+        <button class="small" id="pFree" aria-pressed="true">Zamarik gabe (enuntziatua)</button>
+        <button class="small" id="pHalf" aria-pressed="false">Zama erdia</button>
+        <button class="small" id="pFull" aria-pressed="false">f-raino iristen den zamarik astunena</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="row">
+        <button class="go1" id="b1">1 · Askatu krisketa</button>
+        <button class="go2" id="b2" disabled>2 · Konprimitu itzulgarriki</button>
+        <button id="b0">Berrabiarazi</button>
+      </div>
+      <div class="row">
+        <button class="small" id="sReal" aria-pressed="true">Denbora errealean</button>
+        <button class="small" id="sSlow" aria-pressed="false">Kamera geldoan, ×1/5</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-head">
+    <h2>Energia eta entropia</h2>
+    <button class="small" id="ledgerBtn" aria-expanded="true" aria-controls="ledgerBody">Ezkutatu</button>
+  </div>
+  <p class="hidden-note" id="ledgerNote" hidden>Ezkutatuta. Erakutsi ezazu klasea balantzerako prest dagoenean.</p>
+  <div id="ledgerBody">
+    <div class="ledger-wrap">
+      <table aria-label="Prozesu bakoitzaren eta zikloaren energia eta entropia">
+        <thead><tr><th></th><th class="p1">1 · itzulezina</th><th class="p2">2 · itzulgarria</th><th>zikloa</th></tr></thead>
+        <tbody>
+          <tr><td>Gasaren Δ<i>U</i></td><td>+50.0 J</td><td>−50.0 J</td><td>0 J</td></tr>
+          <tr><td>Zaman metatutako lana, <i>Mg</i>Δ<i>h</i></td><td id="w1"></td><td>−250.0 J</td><td id="wc"></td></tr>
+          <tr><td>Bero-iturriak emandako bero garbia</td><td id="q1"></td><td>−300.0 J</td><td id="qc"></td></tr>
+          <tr><td>Gasaren Δ<i>S</i></td><td>+1.000 J/K</td><td>−1.000 J/K</td><td>0 J/K</td></tr>
+          <tr><td>Bero-iturriaren Δ<i>S</i></td><td id="s1"></td><td>+1.000 J/K</td><td id="sc"></td></tr>
+          <tr class="univ"><td>Unibertsoaren Δ<i>S</i></td><td id="u1"></td><td>0 J/K</td><td id="uc"></td></tr>
+          <tr><td>Lan galdua, <i>T</i>Δ<i>S</i><sub>univ</sub></td><td id="l1"></td><td>0 J</td><td id="lc"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+
+  <div class="notes">
+    <h3>Marrazkiaren atzeko eredua</h3>
+    <ul>
+      <li>Enuntziatuak ez du egoera-ekuaziorik ematen. Marrazkiak van der Waals gas abstraktu bat erabiltzen du, ez inongo substantzia jakinik: <i>n</i> = 0.125 mol, <i>a</i> = 0.2 Pa m⁶ mol⁻², <i>b</i> = 5 × 10⁻⁵ m³ mol⁻¹; <i>V</i><sub>i</sub> = 35.73 cm³ eta <i>V</i><sub>f</sub> = 83.40 cm³ balioak aukeratu dira, haren 300 K-eko isotermak zehazki Δ<i>U</i> = 50 J, Δ<i>S</i> = 1 J/K eta 250 J-eko lana eman ditzan. Beste gas batek beste kurba batzuk marraztuko lituzke, baina balantzea bera litzateke: enuntziatuko zenbakiak eta <i>Mg</i>Δ<i>h</i> baino ez ditu erabiltzen.</li>
+      <li>Pistoiaren azalera 1 cm²-koa da; beraz, ibilbidea 47.7 cm-koa da, eta zama beste horrenbeste igotzen da. Pistoiaren atzean hutsa dago; beraz, zama bakarra <i>Mg</i> da, eta <i>p</i><sub>ext</sub> = <i>Mg</i>/<i>A</i>. Marruskadura arbuiatu egiten da. <i>p</i><sub>f</sub><i>A</i>/<i>g</i> = 36.6 kg baino zama astunago batek f baino lehen geldituko luke pistoia; beraz, urrats bakarreko zama batek gehienez <i>p</i><sub>f</sub>(<i>V</i><sub>f</sub> − <i>V</i><sub>i</sub>) = 171.3 J metatzen ditu, hedapen itzulgarriaren 250 J baino gutxiago.</li>
+      <li>Askatzea kalkulatu egiten da, ez da eskuz marrazten. Pistoia (0.5 kg) eta zama soka elastiko batetik zintzilik daude (40 kN/m, galera txikiekin). Gasak isotermaren presioaz bultzatzen du pistoia, barne-marruskaduraren ondoriozko 70 N s/m-ko erresistentzia bat kenduta: hor dago, hain zuzen, itzulezintasuna. Horrek mugimenduari forma ematen dio, besterik ez: oldarraldian, gasak ez du presio bakar bat. Pistoiak topea jotzen du eta pixka bat errebotatzen du. Zamak aurrera jarraitzen du, soka lasaitu egiten da, zama 15 cm gorago dagoen moteltzaileraino iristen da edo atzera erortzen da, soka bat-batean tenkatzen du, eta gora eta behera dabil sokaren galerek geldiarazi arte.</li>
+      <li>Energia zinetiko hori guztia bero bihurtzen da 300 K-eko ingurunean, eta hemen bero-iturriarekin batera zenbatzen da. Horregatik, bero-iturriaren bero garbia Δ<i>U</i> + <i>Mg</i>Δ<i>h</i> da, pistoia eta zama nola mugitu diren gorabehera.</li>
+      <li>2. prozesuan harea alez ale gehitzen da, eta, horrela, zamak beti orekatzen du gasa: <i>M</i> = <i>p</i>(<i>V</i>)<i>A</i>/<i>g</i>, 36.6 kg-tik 82.9 kg-ra. Jaisten ari den zamak 250 J-eko lana egiten du gasaren gainean.</li>
+      <li>Ikasgaiaren orrian Δ<i>S</i><sub>1</sub> = 10/3 J/K ageri da. Enuntziatuaren beraren zenbakiek 1 J/K ematen dute: itzulera itzulgarrian 300 J kanporatzen dira 300 K-ean.</li>
+    </ul>
+  </div>
+</div>
+
+</template>
+<script>
+function runEN() {
+(function () {
+  "use strict";
+  // ---- the gas: an abstract van der Waals gas calibrated to the statement (checked in tools/verify.py) ----
+  var R = 8.314462618, T = 300, n = 0.125, a = 0.2, b = 5e-5, A = 1e-4, g = 9.81;
+  var Vi = 3.572710922894755e-05, Vf = 8.34031836869681e-05;
+  function p(V) { return n * R * T / (V - n * b) - a * n * n / (V * V); }
+  var pf = p(Vf), pi = p(Vi), Mmax = pf * A / g, stroke = (Vf - Vi) / A;   // stroke in m
+  var DU = 50, W2 = -250, Q2 = -300, DS = 1;                               // the statement
+
+  // ---- the release: piston, cord and load ----
+  var MP = 0.5, C_GAS = 70, KC = 4e4, ZETA = 0.05, CLEAR = 0.15, E_STOP = 0.3, E_BUF = 0.4, TAU_HEAT = 0.7;
+
+  // ---- drawing scales ----
+  var X0 = 60, K = 3.4e6;                 // apparatus: px per m³ of gas (3.4 px per cm³)
+  var PXM = K * A;                        // px per metre of piston travel or load rise
+  var LOAD_Y0 = 530;                      // load top at rest in state i
+  var PVx = function (V) { return 64 + (V * 1e6 - 20) / 80 * 426; };   // 20..100 cm³
+  var PVy = function (P) { return 360 - P / 1e5 / 100 * 330; };        // 0..100 bar
+
+  var $ = function (id) { return document.getElementById(id); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    parent.appendChild(e); return e;
+  }
+  function f1(x) { return x.toFixed(1); }
+  function sgn(x, d) { var s = Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x; return (s > 0 ? "+" : s < 0 ? "−" : "") + Math.abs(s).toFixed(d); }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  // ---- heat arrows above and below the cylinder ----
+  [110, 170, 230].forEach(function (x) {
+    [1, -1].forEach(function (s) {
+      var gg = el("g", { "class": "ha", transform: s > 0 ? "translate(" + x + ",0)" : "translate(" + x + ",400) scale(1,-1)" }, $("heat"));
+      el("path", { fill: "none", stroke: "var(--heat)", "stroke-width": 2, "marker-end": "url(#ah)" }, gg);
+    });
+  });
+  function heat(dir, on) {
+    $("heat").setAttribute("opacity", on);
+    $("heat").querySelectorAll("path").forEach(function (pth) {
+      pth.setAttribute("d", dir > 0 ? "M0,140 q5,6 0,12 q-5,6 0,12" : "M0,164 q-5,-6 0,-12 q5,-6 0,-12");
+    });
+  }
+
+  // ---- p–V axes and fixed curves ----
+  (function axes() {
+    var g0 = $("pvAxes"), i, V;
+    el("line", { x1: 64, y1: 360, x2: 494, y2: 360, stroke: "var(--ink-soft)" }, g0);
+    el("line", { x1: 64, y1: 30, x2: 64, y2: 360, stroke: "var(--ink-soft)" }, g0);
+    for (var v = 20; v <= 100; v += 10) {
+      var x = PVx(v * 1e-6);
+      el("line", { x1: x, y1: 360, x2: x, y2: 365, stroke: "var(--ink-soft)" }, g0);
+      el("text", { x: x, y: 381, "text-anchor": "middle", style: "font-size:12.5px", "class": "mono" }, g0, v);
+    }
+    for (var P = 0; P <= 100; P += 20) {
+      var y = PVy(P * 1e5);
+      el("line", { x1: 59, y1: y, x2: 64, y2: y, stroke: "var(--ink-soft)" }, g0);
+      if (P) el("line", { x1: 64, y1: y, x2: 494, y2: y, stroke: "var(--line-soft)" }, g0);
+      el("text", { x: 54, y: y + 4, "text-anchor": "end", style: "font-size:12.5px", "class": "mono" }, g0, P);
+    }
+    el("text", { x: 494, y: 402, "text-anchor": "end", style: "font-size:13px" }, g0, "V / cm³");
+    el("text", { x: 14, y: 22, style: "font-size:13px" }, g0, "p / bar");
+    var faint = "", bold = "", area = "M" + PVx(Vi) + "," + PVy(0);
+    for (i = 0; i <= 120; i++) {
+      V = (29.0 + i * (100 - 29.0) / 120) * 1e-6;
+      faint += (i ? "L" : "M") + PVx(V).toFixed(1) + "," + PVy(p(V)).toFixed(1);
+    }
+    for (i = 0; i <= 80; i++) {
+      V = Vi + (Vf - Vi) * i / 80;
+      var pt = PVx(V).toFixed(1) + "," + PVy(p(V)).toFixed(1);
+      bold += (i ? "L" : "M") + pt; area += "L" + pt;
+    }
+    area += "L" + PVx(Vf) + "," + PVy(0) + "Z";
+    $("isoFaint").setAttribute("d", faint);
+    $("iso").setAttribute("d", bold);
+    $("aRev").setAttribute("d", area);
+    var V3 = Vi + 0.67 * (Vf - Vi);
+    el("text", { x: PVx(V3) + 4, y: PVy(p(V3)) + 18, style: "font-size:12.5px;fill:var(--blue)" }, $("pts"), "300 K");
+    var Vm = 0.5 * (Vi + Vf), dV = 0.8e-6;
+    arrowHead($("isoArrow"), PVx(Vm + dV), PVy(p(Vm + dV)), PVx(Vm - dV), PVy(p(Vm - dV)));
+    var d = $("dot1");
+    d.setAttribute("x1", PVx(Vi)); d.setAttribute("y1", PVy(pi)); d.setAttribute("x2", PVx(Vf)); d.setAttribute("y2", PVy(pf));
+    var t = 0.55;
+    arrowHead($("dotArrow"), PVx(Vi), PVy(pi), PVx(Vi) + t * (PVx(Vf) - PVx(Vi)), PVy(pi) + t * (PVy(pf) - PVy(pi)));
+    [[Vi, pi, "i", -14, -10], [Vf, pf, "f", 10, -10]].forEach(function (s) {
+      el("circle", { cx: PVx(s[0]), cy: PVy(s[1]), r: 5.5, fill: "var(--ink)" }, $("pts"));
+      el("text", { x: PVx(s[0]) + s[3], y: PVy(s[1]) + s[4], "text-anchor": s[3] < 0 ? "end" : "start", style: "font-size:17px;font-weight:700;fill:var(--ink);font-family:var(--serif)" }, $("pts"), s[2]);
+    });
+    el("text", { x: PVx(Vi) + 10, y: PVy(pi) - 4, style: "font-size:12px", "class": "mono" }, $("pts"), "35.7 cm³, 81.3 bar");
+    el("text", { x: PVx(Vf) + 10, y: PVy(pf) + 18, style: "font-size:12px", "class": "mono" }, $("pts"), "83.4 cm³");
+    el("text", { x: PVx(Vf) + 10, y: PVy(pf) + 33, style: "font-size:12px", "class": "mono" }, $("pts"), "35.9 bar");
+  })();
+  function arrowHead(path, x0, y0, x1, y1) {
+    var ang = Math.atan2(y1 - y0, x1 - x0), L = 11, w = 5.5;
+    var bx = x1 - L * Math.cos(ang), by = y1 - L * Math.sin(ang), nx = -Math.sin(ang) * w, ny = Math.cos(ang) * w;
+    path.setAttribute("d", "M" + x1 + "," + y1 + "L" + (bx + nx) + "," + (by + ny) + "L" + (bx - nx) + "," + (by - ny) + "Z");
+  }
+
+  // ---- state ----
+  var M = 0, phase = "i", raf = 0, speed = 1;
+  var sim = null;
+
+  // Process 1, integrated: piston xp (travel from i), load rise y (from its rest in i), cord stretch e = xp − y + e0.
+  function simulate() {
+    var e0 = M * g / KC, c = 2 * ZETA * Math.sqrt(KC * Math.max(M, 1e-9));
+    var xp = 0, vp = 0, y = 0, vy = 0, t = 0, dt = 2e-5, k = 0;
+    var tImp = null, lastActive = 0, ts = [], xs = [], ys = [], es = [], slackSeen = false, bufferHit = false;
+    while (t < 8) {
+      var e = M > 0 ? xp - y + e0 : 0, de = vp - vy;
+      var Tc = e > 0 ? Math.max(0, KC * e + c * de) : 0;
+      var V = Math.max(Vi + A * xp, 1.2 * n * b);
+      vp += (p(V) * A - Tc - C_GAS * vp) / MP * dt;   // C_GAS: the gas's internal friction
+      if (M > 0) vy += (Tc / M - g) * dt;
+      xp += vp * dt; y += vy * dt; t += dt;
+      if (xp >= stroke) {                    // the stop
+        xp = stroke;
+        if (vp > 0) { if (tImp === null) tImp = t; vp = vp < 0.05 ? 0 : -E_STOP * vp; }
+      }
+      if (M > 0 && y > stroke + CLEAR) {     // the buffer above the load
+        y = stroke + CLEAR; if (vy > 0) { vy = -E_BUF * vy; bufferHit = true; }
+      }
+      if (M > 0 && e < -1e-3) slackSeen = true;
+      if (Math.abs(vp) > 0.004 || Math.abs(vy) > 0.004) lastActive = t;
+      if (++k % 50 === 0) { ts.push(t); xs.push(xp); ys.push(y); es.push(e); }
+      if (tImp !== null && t > lastActive + 0.25) break;
+    }
+    return { ts: ts, xs: xs, ys: ys, es: es, tImp: tImp || t, tEnd: t, slack: slackSeen, buffer: bufferHit };
+  }
+  function at(s, t) {
+    var lo = 0, hi = s.ts.length - 1;
+    if (t <= s.ts[0]) return 0;
+    if (t >= s.ts[hi]) return hi;
+    while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (s.ts[mid] < t) lo = mid; else hi = mid; }
+    return hi;
+  }
+
+  // ---- drawing of the apparatus ----
+  // x: piston travel (m); rise: load rise above its position in i (m); slack: cord slack (m, ≥ 0); m: load (kg)
+  function drawApp(x, rise, slack, m, cold, showLoad) {
+    var xp = X0 + K * Vi + PXM * x;
+    $("gas").setAttribute("width", Math.max(4, xp - X0));
+    $("gas").style.fill = "color-mix(in oklab, var(--gas-cold) " + Math.round(cold * 100) + "%, var(--gas))";
+    $("piston").setAttribute("transform", "translate(" + xp + ",0)");
+    var vacW = 367 - (xp + 14);
+    $("vacLbl").setAttribute("x", xp + 14 + vacW / 2 - 22);
+    $("vacLbl").setAttribute("opacity", vacW > 60 ? 1 : 0);
+    $("spokes").setAttribute("transform", "rotate(" + (PXM * x / 20 * 180 / Math.PI) + " 610 220)");
+    var rodEnd = xp + 244, yTop = LOAD_Y0 - PXM * rise;
+    $("cordH").setAttribute("d", "M" + rodEnd + ",200 L610,200");
+    var bulge = Math.min(34, PXM * slack * 0.9), mid = 0.5 * (yTop + 220);
+    $("cordV").setAttribute("d", "M630," + yTop + " Q" + (630 - bulge) + "," + mid + " 630,220");
+    $("load").setAttribute("transform", "translate(0," + yTop + ")");
+    $("loadTxt").textContent = f1(m) + " kg";
+    ["load", "cordV", "cordH", "buffer"].forEach(function (id) { $(id).style.display = showLoad ? "" : "none"; });
+    $("noLoad").style.display = showLoad ? "none" : "";
+    $("ruler").style.display = showLoad && Math.abs(rise) > 2e-3 ? "" : "none";
+    $("rulerTop").setAttribute("y1", yTop); $("rulerTop").setAttribute("y2", yTop);
+    $("rulerLine").setAttribute("y1", yTop); $("rulerLine").setAttribute("y2", LOAD_Y0);
+  }
+  function latch(open) {
+    $("latchT").setAttribute("transform", open ? "translate(0,-14)" : "");
+    $("latchB").setAttribute("transform", open ? "translate(0,14)" : "");
+  }
+  function readouts(state, V, P, m, dh, Q, note, note2) {
+    $("r1").textContent = state + " · V = " + f1(V * 1e6) + " cm³ · p = " + (P == null ? "not defined" : f1(P / 1e5) + " bar");
+    $("r2").textContent = "load " + f1(m) + " kg · raised Δh = " + f1(dh * 100) + " cm";
+    $("r3").textContent = "net heat from the reservoir: " + sgn(Q, 0) + " J";
+    $("r4").textContent = note || "";
+    $("r5").textContent = note2 || "";
+  }
+  function pvNow(V, show) {
+    var x = PVx(V);
+    $("vNow").setAttribute("x1", x); $("vNow").setAttribute("x2", x);
+    $("vNow").setAttribute("y1", 30); $("vNow").setAttribute("y2", 360);
+    $("vNow").setAttribute("opacity", show ? 1 : 0);
+    $("vNowLbl").setAttribute("x", Math.min(x + 6, 350)); $("vNowLbl").setAttribute("y", 44);
+    $("vNowLbl").setAttribute("opacity", show ? 1 : 0);
+  }
+  function mark(V, show) {
+    $("mark").setAttribute("cx", PVx(V)); $("mark").setAttribute("cy", PVy(p(V)));
+    $("mark").setAttribute("opacity", show ? 1 : 0);
+  }
+
+  // ---- ledger and the work rectangle follow the load ----
+  function ledger() {
+    var W = M * g * stroke, Q1 = DU + W, S1 = -Q1 / T, U1 = DS + S1, lost = 250 - W;
+    $("w1").textContent = sgn(W, 1) + " J";
+    $("q1").textContent = sgn(Q1, 1) + " J";
+    $("s1").textContent = sgn(S1, 3) + " J/K";
+    $("u1").textContent = sgn(U1, 3) + " J/K";
+    $("l1").textContent = f1(T * U1) + " J";
+    $("wc").textContent = sgn(W + W2, 1) + " J";
+    $("qc").textContent = sgn(Q1 + Q2, 1) + " J";
+    $("sc").textContent = sgn(S1 + 1, 3) + " J/K";
+    $("uc").textContent = sgn(U1, 3) + " J/K";
+    $("lc").textContent = f1(T * U1) + " J";
+    $("verdict").innerHTML = (M === 0
+      ? "With no load the expansion stores no work. The reservoir supplies only the 50 J the gas needs, and the universe gains <b>0.833 J/K</b>."
+      : "The load stores <b>" + f1(W) + " J</b>. The reservoir pays for it: it supplies " + f1(Q1) + " J instead of 50 J, and the universe gains only <b>" + U1.toFixed(3) + " J/K</b>.")
+      + " Over the cycle the loads lose " + f1(lost) + " J of potential energy and the reservoir gains " + f1(lost) + " J of heat: work turned into heat, never the reverse (Kelvin–Planck). Only a reversible expansion, storing 250 J, would leave nothing behind.";
+    var pe = M * g / A, x0 = PVx(Vi), x1 = PVx(Vf), y = PVy(pe);
+    var r = $("aWork");
+    r.setAttribute("x", x0); r.setAttribute("width", x1 - x0); r.setAttribute("y", y); r.setAttribute("height", Math.max(0, 360 - y));
+    r.style.display = M > 0 ? "" : "none";
+    var Vl = Vi + 0.25 * (Vf - Vi);
+    $("tRev").textContent = "lost " + f1(lost) + " J";
+    $("tRev").setAttribute("x", PVx(Vl)); $("tRev").setAttribute("text-anchor", "middle");
+    $("tRev").setAttribute("y", 0.5 * (PVy(p(Vl)) + Math.min(y, 360)) + 5);
+    $("tWork").textContent = M > 0 ? "stored " + f1(W) + " J" : "";
+    $("tWork").setAttribute("x", 0.5 * (x0 + x1)); $("tWork").setAttribute("text-anchor", "middle");
+    $("tWork").setAttribute("y", 360 - y < 24 ? y - 6 : y + Math.min(26, (360 - y) / 2 + 5));
+    $("mass").setAttribute("aria-valuetext", f1(M) + " kilograms");
+    $("massVal").textContent = f1(M) + " kg · " + f1(pe / 1e5) + " bar";
+    ["pFree", "pHalf", "pFull"].forEach(function (id, k) {
+      $(id).setAttribute("aria-pressed", Math.abs(M - [0, Mmax / 2, Mmax][k]) < 0.02 ? "true" : "false");
+    });
+  }
+
+  // ---- the states of the page ----
+  function atI() {
+    cancelAnimationFrame(raf); phase = "i";
+    drawApp(0, 0, 0, M, 0, M > 0); heat(1, 0); latch(false);
+    pvNow(Vi, false); mark(Vi, false);
+    readouts("state i", Vi, pi, M, 0, 0, "Latch closed. Press 1 to release the piston.");
+    $("b1").disabled = false; $("b2").disabled = true; $("mass").disabled = false;
+  }
+  function atF(Q) {
+    phase = "f";
+    drawApp(stroke, stroke, 0, M, 0, M > 0); heat(1, 0);
+    pvNow(Vf, false); mark(Vf, false);
+    readouts("state f", Vf, pf, M, stroke, Q, "At rest against the stop, back at 300 K.", "Press 2 to bring the gas back along the isotherm.");
+    $("b1").disabled = true; $("b2").disabled = false;
+  }
+  function loop(step, done) {      // step(elapsed seconds) returns true while running
+    var t0 = null;
+    function frame(ts) {
+      if (t0 == null) t0 = ts;
+      if (step((ts - t0) / 1000)) raf = requestAnimationFrame(frame); else done();
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  function run1() {
+    if (phase !== "i") return;
+    phase = "p1"; $("b1").disabled = true; $("mass").disabled = true;
+    sim = simulate(); latch(true);
+    var s = sim, Q1 = DU + M * g * stroke;
+    var tTotal = Math.max(s.tEnd, s.tImp + 4 * TAU_HEAT);
+    if (reduce) { atF(Q1); return; }
+    loop(function (el) {
+      var t = el * speed, k = at(s, t), x = s.xs[k], rise = M > 0 ? s.ys[k] : x, slack = Math.max(0, -s.es[k]);
+      var after = t > s.tImp, f = after ? Math.exp(-(t - s.tImp) / TAU_HEAT) : 1;
+      var cold = 0.9 * (after ? f : Math.min(1, x / stroke));
+      drawApp(x, rise, slack, M, cold, M > 0);
+      heat(1, after && f > 0.04 ? 1 : 0);
+      var V = Vi + A * x;
+      pvNow(V, t < s.tEnd);
+      var moving = t < s.tEnd, note, note2 = "";
+      if (!after) note = "Released: the gas rushes out, with no single pressure or temperature.";
+      else if (moving && M > 0) { note = "The piston hit the stop. The load runs on; the cord goes slack"; note2 = s.buffer ? "and snaps taut again; the load hits the buffer and bobs." : "and snaps taut again; the load bobs on the cord."; }
+      else if (moving) note = "The piston hit the stop and rebounds.";
+      else note = "Heat flows in until the gas is back at 300 K.";
+      readouts("process 1", V, null, M, rise, after ? Q1 * (1 - f) : 0, note, note2);
+      return t < tTotal;
+    }, function () { atF(Q1); });
+  }
+  function run2() {
+    if (phase !== "f") return;
+    phase = "p2"; $("b2").disabled = true;
+    var Q1 = DU + M * g * stroke, D2 = 4.2;
+    function show(u) {
+      var V = Vf - (Vf - Vi) * u, x = (V - Vi) / A, m = p(V) * A / g;
+      drawApp(x, x, 0, m, 0, true); heat(-1, 0.85);
+      mark(V, true); pvNow(V, false);
+      readouts("process 2", V, p(V), m, x, Q1 - 300 * u, "Sand added grain by grain: the load balances the gas at every step.");
+    }
+    function end() {
+      phase = "i2"; heat(-1, 0); mark(Vi, false);
+      drawApp(0, 0, 0, p(Vi) * A / g, 0, true); latch(false);
+      readouts("state i again", Vi, pi, p(Vi) * A / g, 0, Q1 - 300, "Back in i. The cycle column has the balance.", "Reset to run again.");
+      $("mass").disabled = false;
+    }
+    if (reduce) { end(); return; }
+    loop(function (el) { var u = Math.min(1, el / D2); show(u); return u < 1; }, end);
+  }
+
+  function setLoad(m) { M = m; $("mass").value = m; ledger(); atI(); }
+  $("mass").max = Mmax.toFixed(2);
+  $("mass").addEventListener("input", function () { M = +this.value; if (M > Mmax - 0.02) M = Mmax; ledger(); atI(); });
+  $("pFree").addEventListener("click", function () { setLoad(0); });
+  $("pHalf").addEventListener("click", function () { setLoad(Mmax / 2); });
+  $("pFull").addEventListener("click", function () { setLoad(Mmax); });
+  $("b1").addEventListener("click", run1);
+  $("b2").addEventListener("click", run2);
+  $("b0").addEventListener("click", atI);
+  function setSpeed(v) {
+    speed = v;
+    $("sReal").setAttribute("aria-pressed", v === 1 ? "true" : "false");
+    $("sSlow").setAttribute("aria-pressed", v === 1 ? "false" : "true");
+  }
+  $("sReal").addEventListener("click", function () { setSpeed(1); });
+  $("sSlow").addEventListener("click", function () { setSpeed(0.2); });
+
+  // ---- the ledger can be hidden ----
+  function showLedger(on) {
+    $("ledgerBody").hidden = !on; $("ledgerNote").hidden = on;
+    $("ledgerBtn").textContent = on ? "Hide" : "Show";
+    $("ledgerBtn").setAttribute("aria-expanded", on ? "true" : "false");
+    store("ex20-ledger", on ? "1" : "0");
+  }
+  $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
+  showLedger(store("ex20-ledger") !== "0");
+
+  ledger(); atI();
+})();
+}
+function runEU() {
+(function () {
+  "use strict";
+  // ---- the gas: an abstract van der Waals gas calibrated to the statement (checked in tools/verify.py) ----
+  var R = 8.314462618, T = 300, n = 0.125, a = 0.2, b = 5e-5, A = 1e-4, g = 9.81;
+  var Vi = 3.572710922894755e-05, Vf = 8.34031836869681e-05;
+  function p(V) { return n * R * T / (V - n * b) - a * n * n / (V * V); }
+  var pf = p(Vf), pi = p(Vi), Mmax = pf * A / g, stroke = (Vf - Vi) / A;   // stroke in m
+  var DU = 50, W2 = -250, Q2 = -300, DS = 1;                               // the statement
+
+  // ---- the release: piston, cord and load ----
+  var MP = 0.5, C_GAS = 70, KC = 4e4, ZETA = 0.05, CLEAR = 0.15, E_STOP = 0.3, E_BUF = 0.4, TAU_HEAT = 0.7;
+
+  // ---- drawing scales ----
+  var X0 = 60, K = 3.4e6;                 // apparatus: px per m³ of gas (3.4 px per cm³)
+  var PXM = K * A;                        // px per metre of piston travel or load rise
+  var LOAD_Y0 = 530;                      // load top at rest in state i
+  var PVx = function (V) { return 64 + (V * 1e6 - 20) / 80 * 426; };   // 20..100 cm³
+  var PVy = function (P) { return 360 - P / 1e5 / 100 * 330; };        // 0..100 bar
+
+  var $ = function (id) { return document.getElementById(id); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    parent.appendChild(e); return e;
+  }
+  function f1(x) { return x.toFixed(1); }
+  function sgn(x, d) { var s = Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x; return (s > 0 ? "+" : s < 0 ? "−" : "") + Math.abs(s).toFixed(d); }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  // ---- heat arrows above and below the cylinder ----
+  [110, 170, 230].forEach(function (x) {
+    [1, -1].forEach(function (s) {
+      var gg = el("g", { "class": "ha", transform: s > 0 ? "translate(" + x + ",0)" : "translate(" + x + ",400) scale(1,-1)" }, $("heat"));
+      el("path", { fill: "none", stroke: "var(--heat)", "stroke-width": 2, "marker-end": "url(#ah)" }, gg);
+    });
+  });
+  function heat(dir, on) {
+    $("heat").setAttribute("opacity", on);
+    $("heat").querySelectorAll("path").forEach(function (pth) {
+      pth.setAttribute("d", dir > 0 ? "M0,140 q5,6 0,12 q-5,6 0,12" : "M0,164 q-5,-6 0,-12 q5,-6 0,-12");
+    });
+  }
+
+  // ---- p–V axes and fixed curves ----
+  (function axes() {
+    var g0 = $("pvAxes"), i, V;
+    el("line", { x1: 64, y1: 360, x2: 494, y2: 360, stroke: "var(--ink-soft)" }, g0);
+    el("line", { x1: 64, y1: 30, x2: 64, y2: 360, stroke: "var(--ink-soft)" }, g0);
+    for (var v = 20; v <= 100; v += 10) {
+      var x = PVx(v * 1e-6);
+      el("line", { x1: x, y1: 360, x2: x, y2: 365, stroke: "var(--ink-soft)" }, g0);
+      el("text", { x: x, y: 381, "text-anchor": "middle", style: "font-size:12.5px", "class": "mono" }, g0, v);
+    }
+    for (var P = 0; P <= 100; P += 20) {
+      var y = PVy(P * 1e5);
+      el("line", { x1: 59, y1: y, x2: 64, y2: y, stroke: "var(--ink-soft)" }, g0);
+      if (P) el("line", { x1: 64, y1: y, x2: 494, y2: y, stroke: "var(--line-soft)" }, g0);
+      el("text", { x: 54, y: y + 4, "text-anchor": "end", style: "font-size:12.5px", "class": "mono" }, g0, P);
+    }
+    el("text", { x: 494, y: 402, "text-anchor": "end", style: "font-size:13px" }, g0, "V / cm³");
+    el("text", { x: 14, y: 22, style: "font-size:13px" }, g0, "p / bar");
+    var faint = "", bold = "", area = "M" + PVx(Vi) + "," + PVy(0);
+    for (i = 0; i <= 120; i++) {
+      V = (29.0 + i * (100 - 29.0) / 120) * 1e-6;
+      faint += (i ? "L" : "M") + PVx(V).toFixed(1) + "," + PVy(p(V)).toFixed(1);
+    }
+    for (i = 0; i <= 80; i++) {
+      V = Vi + (Vf - Vi) * i / 80;
+      var pt = PVx(V).toFixed(1) + "," + PVy(p(V)).toFixed(1);
+      bold += (i ? "L" : "M") + pt; area += "L" + pt;
+    }
+    area += "L" + PVx(Vf) + "," + PVy(0) + "Z";
+    $("isoFaint").setAttribute("d", faint);
+    $("iso").setAttribute("d", bold);
+    $("aRev").setAttribute("d", area);
+    var V3 = Vi + 0.67 * (Vf - Vi);
+    el("text", { x: PVx(V3) + 4, y: PVy(p(V3)) + 18, style: "font-size:12.5px;fill:var(--blue)" }, $("pts"), "300 K");
+    var Vm = 0.5 * (Vi + Vf), dV = 0.8e-6;
+    arrowHead($("isoArrow"), PVx(Vm + dV), PVy(p(Vm + dV)), PVx(Vm - dV), PVy(p(Vm - dV)));
+    var d = $("dot1");
+    d.setAttribute("x1", PVx(Vi)); d.setAttribute("y1", PVy(pi)); d.setAttribute("x2", PVx(Vf)); d.setAttribute("y2", PVy(pf));
+    var t = 0.55;
+    arrowHead($("dotArrow"), PVx(Vi), PVy(pi), PVx(Vi) + t * (PVx(Vf) - PVx(Vi)), PVy(pi) + t * (PVy(pf) - PVy(pi)));
+    [[Vi, pi, "i", -14, -10], [Vf, pf, "f", 10, -10]].forEach(function (s) {
+      el("circle", { cx: PVx(s[0]), cy: PVy(s[1]), r: 5.5, fill: "var(--ink)" }, $("pts"));
+      el("text", { x: PVx(s[0]) + s[3], y: PVy(s[1]) + s[4], "text-anchor": s[3] < 0 ? "end" : "start", style: "font-size:17px;font-weight:700;fill:var(--ink);font-family:var(--serif)" }, $("pts"), s[2]);
+    });
+    el("text", { x: PVx(Vi) + 10, y: PVy(pi) - 4, style: "font-size:12px", "class": "mono" }, $("pts"), "35.7 cm³, 81.3 bar");
+    el("text", { x: PVx(Vf) + 10, y: PVy(pf) + 18, style: "font-size:12px", "class": "mono" }, $("pts"), "83.4 cm³");
+    el("text", { x: PVx(Vf) + 10, y: PVy(pf) + 33, style: "font-size:12px", "class": "mono" }, $("pts"), "35.9 bar");
+  })();
+  function arrowHead(path, x0, y0, x1, y1) {
+    var ang = Math.atan2(y1 - y0, x1 - x0), L = 11, w = 5.5;
+    var bx = x1 - L * Math.cos(ang), by = y1 - L * Math.sin(ang), nx = -Math.sin(ang) * w, ny = Math.cos(ang) * w;
+    path.setAttribute("d", "M" + x1 + "," + y1 + "L" + (bx + nx) + "," + (by + ny) + "L" + (bx - nx) + "," + (by - ny) + "Z");
+  }
+
+  // ---- state ----
+  var M = 0, phase = "i", raf = 0, speed = 1;
+  var sim = null;
+
+  // Process 1, integrated: piston xp (travel from i), load rise y (from its rest in i), cord stretch e = xp − y + e0.
+  function simulate() {
+    var e0 = M * g / KC, c = 2 * ZETA * Math.sqrt(KC * Math.max(M, 1e-9));
+    var xp = 0, vp = 0, y = 0, vy = 0, t = 0, dt = 2e-5, k = 0;
+    var tImp = null, lastActive = 0, ts = [], xs = [], ys = [], es = [], slackSeen = false, bufferHit = false;
+    while (t < 8) {
+      var e = M > 0 ? xp - y + e0 : 0, de = vp - vy;
+      var Tc = e > 0 ? Math.max(0, KC * e + c * de) : 0;
+      var V = Math.max(Vi + A * xp, 1.2 * n * b);
+      vp += (p(V) * A - Tc - C_GAS * vp) / MP * dt;   // C_GAS: the gas's internal friction
+      if (M > 0) vy += (Tc / M - g) * dt;
+      xp += vp * dt; y += vy * dt; t += dt;
+      if (xp >= stroke) {                    // the stop
+        xp = stroke;
+        if (vp > 0) { if (tImp === null) tImp = t; vp = vp < 0.05 ? 0 : -E_STOP * vp; }
+      }
+      if (M > 0 && y > stroke + CLEAR) {     // the buffer above the load
+        y = stroke + CLEAR; if (vy > 0) { vy = -E_BUF * vy; bufferHit = true; }
+      }
+      if (M > 0 && e < -1e-3) slackSeen = true;
+      if (Math.abs(vp) > 0.004 || Math.abs(vy) > 0.004) lastActive = t;
+      if (++k % 50 === 0) { ts.push(t); xs.push(xp); ys.push(y); es.push(e); }
+      if (tImp !== null && t > lastActive + 0.25) break;
+    }
+    return { ts: ts, xs: xs, ys: ys, es: es, tImp: tImp || t, tEnd: t, slack: slackSeen, buffer: bufferHit };
+  }
+  function at(s, t) {
+    var lo = 0, hi = s.ts.length - 1;
+    if (t <= s.ts[0]) return 0;
+    if (t >= s.ts[hi]) return hi;
+    while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (s.ts[mid] < t) lo = mid; else hi = mid; }
+    return hi;
+  }
+
+  // ---- drawing of the apparatus ----
+  // x: piston travel (m); rise: load rise above its position in i (m); slack: cord slack (m, ≥ 0); m: load (kg)
+  function drawApp(x, rise, slack, m, cold, showLoad) {
+    var xp = X0 + K * Vi + PXM * x;
+    $("gas").setAttribute("width", Math.max(4, xp - X0));
+    $("gas").style.fill = "color-mix(in oklab, var(--gas-cold) " + Math.round(cold * 100) + "%, var(--gas))";
+    $("piston").setAttribute("transform", "translate(" + xp + ",0)");
+    var vacW = 367 - (xp + 14);
+    $("vacLbl").setAttribute("x", xp + 14 + vacW / 2 - 22);
+    $("vacLbl").setAttribute("opacity", vacW > 60 ? 1 : 0);
+    $("spokes").setAttribute("transform", "rotate(" + (PXM * x / 20 * 180 / Math.PI) + " 610 220)");
+    var rodEnd = xp + 244, yTop = LOAD_Y0 - PXM * rise;
+    $("cordH").setAttribute("d", "M" + rodEnd + ",200 L610,200");
+    var bulge = Math.min(34, PXM * slack * 0.9), mid = 0.5 * (yTop + 220);
+    $("cordV").setAttribute("d", "M630," + yTop + " Q" + (630 - bulge) + "," + mid + " 630,220");
+    $("load").setAttribute("transform", "translate(0," + yTop + ")");
+    $("loadTxt").textContent = f1(m) + " kg";
+    ["load", "cordV", "cordH", "buffer"].forEach(function (id) { $(id).style.display = showLoad ? "" : "none"; });
+    $("noLoad").style.display = showLoad ? "none" : "";
+    $("ruler").style.display = showLoad && Math.abs(rise) > 2e-3 ? "" : "none";
+    $("rulerTop").setAttribute("y1", yTop); $("rulerTop").setAttribute("y2", yTop);
+    $("rulerLine").setAttribute("y1", yTop); $("rulerLine").setAttribute("y2", LOAD_Y0);
+  }
+  function latch(open) {
+    $("latchT").setAttribute("transform", open ? "translate(0,-14)" : "");
+    $("latchB").setAttribute("transform", open ? "translate(0,14)" : "");
+  }
+  function readouts(state, V, P, m, dh, Q, note, note2) {
+    $("r1").textContent = state + " · V = " + f1(V * 1e6) + " cm³ · p = " + (P == null ? "definitu gabe" : f1(P / 1e5) + " bar");
+    $("r2").textContent = "zama " + f1(m) + " kg · igoera Δh = " + f1(dh * 100) + " cm";
+    $("r3").textContent = "bero-iturriak emandako bero garbia: " + sgn(Q, 0) + " J";
+    $("r4").textContent = note || "";
+    $("r5").textContent = note2 || "";
+  }
+  function pvNow(V, show) {
+    var x = PVx(V);
+    $("vNow").setAttribute("x1", x); $("vNow").setAttribute("x2", x);
+    $("vNow").setAttribute("y1", 30); $("vNow").setAttribute("y2", 360);
+    $("vNow").setAttribute("opacity", show ? 1 : 0);
+    $("vNowLbl").setAttribute("x", Math.min(x + 6, 350)); $("vNowLbl").setAttribute("y", 44);
+    $("vNowLbl").setAttribute("opacity", show ? 1 : 0);
+  }
+  function mark(V, show) {
+    $("mark").setAttribute("cx", PVx(V)); $("mark").setAttribute("cy", PVy(p(V)));
+    $("mark").setAttribute("opacity", show ? 1 : 0);
+  }
+
+  // ---- ledger and the work rectangle follow the load ----
+  function ledger() {
+    var W = M * g * stroke, Q1 = DU + W, S1 = -Q1 / T, U1 = DS + S1, lost = 250 - W;
+    $("w1").textContent = sgn(W, 1) + " J";
+    $("q1").textContent = sgn(Q1, 1) + " J";
+    $("s1").textContent = sgn(S1, 3) + " J/K";
+    $("u1").textContent = sgn(U1, 3) + " J/K";
+    $("l1").textContent = f1(T * U1) + " J";
+    $("wc").textContent = sgn(W + W2, 1) + " J";
+    $("qc").textContent = sgn(Q1 + Q2, 1) + " J";
+    $("sc").textContent = sgn(S1 + 1, 3) + " J/K";
+    $("uc").textContent = sgn(U1, 3) + " J/K";
+    $("lc").textContent = f1(T * U1) + " J";
+    $("verdict").innerHTML = (M === 0
+      ? "Zamarik gabe, hedapenak ez du lanik metatzen. Bero-iturriak gasak behar dituen 50 J baino ez ditu ematen, eta unibertsoaren entropia <b>0.833 J/K</b> handitzen da."
+      : "Zamak <b>" + f1(W) + " J</b> metatzen ditu. Bero-iturriak ordaintzen du: 50 J-en ordez " + f1(Q1) + " J ematen ditu, eta unibertsoaren entropia <b>" + U1.toFixed(3) + " J/K</b> baino ez da handitzen.")
+      + " Ziklo osoan, zamek " + f1(lost) + " J energia potentzial galtzen dituzte, eta bero-iturriak " + f1(lost) + " J bero irabazten ditu: lana bero bihurtzen da, inoiz ez alderantziz (Kelvin–Planck). Hedapen itzulgarri batek bakarrik, 250 J metatuz, ez luke arrastorik utziko.";
+    var pe = M * g / A, x0 = PVx(Vi), x1 = PVx(Vf), y = PVy(pe);
+    var r = $("aWork");
+    r.setAttribute("x", x0); r.setAttribute("width", x1 - x0); r.setAttribute("y", y); r.setAttribute("height", Math.max(0, 360 - y));
+    r.style.display = M > 0 ? "" : "none";
+    var Vl = Vi + 0.25 * (Vf - Vi);
+    $("tRev").textContent = "galdua: " + f1(lost) + " J";
+    $("tRev").setAttribute("x", PVx(Vl)); $("tRev").setAttribute("text-anchor", "middle");
+    $("tRev").setAttribute("y", 0.5 * (PVy(p(Vl)) + Math.min(y, 360)) + 5);
+    $("tWork").textContent = M > 0 ? "metatua: " + f1(W) + " J" : "";
+    $("tWork").setAttribute("x", 0.5 * (x0 + x1)); $("tWork").setAttribute("text-anchor", "middle");
+    $("tWork").setAttribute("y", 360 - y < 24 ? y - 6 : y + Math.min(26, (360 - y) / 2 + 5));
+    $("mass").setAttribute("aria-valuetext", f1(M) + " kilogramo");
+    $("massVal").textContent = f1(M) + " kg · " + f1(pe / 1e5) + " bar";
+    ["pFree", "pHalf", "pFull"].forEach(function (id, k) {
+      $(id).setAttribute("aria-pressed", Math.abs(M - [0, Mmax / 2, Mmax][k]) < 0.02 ? "true" : "false");
+    });
+  }
+
+  // ---- the states of the page ----
+  function atI() {
+    cancelAnimationFrame(raf); phase = "i";
+    drawApp(0, 0, 0, M, 0, M > 0); heat(1, 0); latch(false);
+    pvNow(Vi, false); mark(Vi, false);
+    readouts("i egoera", Vi, pi, M, 0, 0, "Krisketa itxita. Sakatu 1 pistoia askatzeko.");
+    $("b1").disabled = false; $("b2").disabled = true; $("mass").disabled = false;
+  }
+  function atF(Q) {
+    phase = "f";
+    drawApp(stroke, stroke, 0, M, 0, M > 0); heat(1, 0);
+    pvNow(Vf, false); mark(Vf, false);
+    readouts("f egoera", Vf, pf, M, stroke, Q, "Geldirik topearen kontra, berriz 300 K-ean.", "Sakatu 2 gasa isotermatik itzultzeko.");
+    $("b1").disabled = true; $("b2").disabled = false;
+  }
+  function loop(step, done) {      // step(elapsed seconds) returns true while running
+    var t0 = null;
+    function frame(ts) {
+      if (t0 == null) t0 = ts;
+      if (step((ts - t0) / 1000)) raf = requestAnimationFrame(frame); else done();
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  function run1() {
+    if (phase !== "i") return;
+    phase = "p1"; $("b1").disabled = true; $("mass").disabled = true;
+    sim = simulate(); latch(true);
+    var s = sim, Q1 = DU + M * g * stroke;
+    var tTotal = Math.max(s.tEnd, s.tImp + 4 * TAU_HEAT);
+    if (reduce) { atF(Q1); return; }
+    loop(function (el) {
+      var t = el * speed, k = at(s, t), x = s.xs[k], rise = M > 0 ? s.ys[k] : x, slack = Math.max(0, -s.es[k]);
+      var after = t > s.tImp, f = after ? Math.exp(-(t - s.tImp) / TAU_HEAT) : 1;
+      var cold = 0.9 * (after ? f : Math.min(1, x / stroke));
+      drawApp(x, rise, slack, M, cold, M > 0);
+      heat(1, after && f > 0.04 ? 1 : 0);
+      var V = Vi + A * x;
+      pvNow(V, t < s.tEnd);
+      var moving = t < s.tEnd, note, note2 = "";
+      if (!after) note = "Askatuta: gasa oldarrean hedatzen da, presio eta tenperatura bakar bat izan gabe.";
+      else if (moving && M > 0) { note = "Pistoiak topea jo du. Zamak aurrera jarraitzen du; soka lasaitu egiten da"; note2 = s.buffer ? "eta bat-batean tenkatzen da berriz; zamak moteltzailea jotzen du eta gora eta behera dabil." : "eta bat-batean tenkatzen da berriz; zama gora eta behera dabil sokatik zintzilik."; }
+      else if (moving) note = "Pistoiak topea jo du eta errebotatu egiten du.";
+      else note = "Beroa sartzen da, gasa berriz 300 K-ean egon arte.";
+      readouts("1. prozesua", V, null, M, rise, after ? Q1 * (1 - f) : 0, note, note2);
+      return t < tTotal;
+    }, function () { atF(Q1); });
+  }
+  function run2() {
+    if (phase !== "f") return;
+    phase = "p2"; $("b2").disabled = true;
+    var Q1 = DU + M * g * stroke, D2 = 4.2;
+    function show(u) {
+      var V = Vf - (Vf - Vi) * u, x = (V - Vi) / A, m = p(V) * A / g;
+      drawApp(x, x, 0, m, 0, true); heat(-1, 0.85);
+      mark(V, true); pvNow(V, false);
+      readouts("2. prozesua", V, p(V), m, x, Q1 - 300 * u, "Harea alez ale gehitzen da: zamak gasa orekatzen du urrats bakoitzean.");
+    }
+    function end() {
+      phase = "i2"; heat(-1, 0); mark(Vi, false);
+      drawApp(0, 0, 0, p(Vi) * A / g, 0, true); latch(false);
+      readouts("berriz i egoera", Vi, pi, p(Vi) * A / g, 0, Q1 - 300, "Berriz i-n. Balantzea zikloaren zutabean dago.", "Sakatu Berrabiarazi berriro hasteko.");
+      $("mass").disabled = false;
+    }
+    if (reduce) { end(); return; }
+    loop(function (el) { var u = Math.min(1, el / D2); show(u); return u < 1; }, end);
+  }
+
+  function setLoad(m) { M = m; $("mass").value = m; ledger(); atI(); }
+  $("mass").max = Mmax.toFixed(2);
+  $("mass").addEventListener("input", function () { M = +this.value; if (M > Mmax - 0.02) M = Mmax; ledger(); atI(); });
+  $("pFree").addEventListener("click", function () { setLoad(0); });
+  $("pHalf").addEventListener("click", function () { setLoad(Mmax / 2); });
+  $("pFull").addEventListener("click", function () { setLoad(Mmax); });
+  $("b1").addEventListener("click", run1);
+  $("b2").addEventListener("click", run2);
+  $("b0").addEventListener("click", atI);
+  function setSpeed(v) {
+    speed = v;
+    $("sReal").setAttribute("aria-pressed", v === 1 ? "true" : "false");
+    $("sSlow").setAttribute("aria-pressed", v === 1 ? "false" : "true");
+  }
+  $("sReal").addEventListener("click", function () { setSpeed(1); });
+  $("sSlow").addEventListener("click", function () { setSpeed(0.2); });
+
+  // ---- the ledger can be hidden ----
+  function showLedger(on) {
+    $("ledgerBody").hidden = !on; $("ledgerNote").hidden = on;
+    $("ledgerBtn").textContent = on ? "Ezkutatu" : "Erakutsi";
+    $("ledgerBtn").setAttribute("aria-expanded", on ? "true" : "false");
+    store("ex20-eu-ledger", on ? "1" : "0");
+  }
+  $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
+  showLedger(store("ex20-eu-ledger") !== "0");
+
+  ledger(); atI();
+})();
+}
+(function () {
+  "use strict";
+  var TITLES = { en: "A real gas expands and is brought back", eu: null };
+  function setLang(l) {
+    var root = document.getElementById("root");
+    root.innerHTML = "";
+    root.appendChild(document.getElementById("tpl-" + l).content.cloneNode(true));
+    document.documentElement.lang = l;
+    document.getElementById("langEN").setAttribute("aria-pressed", l === "en" ? "true" : "false");
+    document.getElementById("langEU").setAttribute("aria-pressed", l === "eu" ? "true" : "false");
+    try { localStorage.setItem("ex20-lang", l); } catch (e) {}
+    (l === "eu" ? runEU : runEN)();
+  }
+  document.getElementById("langEN").addEventListener("click", function () { setLang("en"); });
+  document.getElementById("langEU").addEventListener("click", function () { setLang("eu"); });
+  var start = "en";
+  try { start = localStorage.getItem("ex20-lang") || "en"; } catch (e) {}
+  if (location.hash === "#eu") start = "eu"; else if (location.hash === "#en") start = "en";
+  setLang(start === "eu" ? "eu" : "en");
+})();
+</script>
+</body></html>
