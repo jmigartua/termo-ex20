@@ -1,9 +1,13 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head><body>
 <title>Second law, exercise 20</title>
 <meta name="description" content="Exercise 20 of topic 6: a real gas expands in contact with a reservoir at 300 K, lifting a load or not, and is brought back by a reversible isotherm.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,6 +111,9 @@ sub, sup { line-height: 0; }
 .langbar button { font-size: 13px; font-weight: 600; padding: 3px 10px; letter-spacing: 0.04em; }
 .langbar button[aria-pressed="true"] { border-color: var(--blue); color: var(--blue); }
 .wrap { padding-block: 8px 48px; }
+.katex { font-size: 1.08em; white-space: nowrap; }
+td .katex, .load-val .katex { font-size: 1.04em; }
+foreignObject .katex { font-size: 1.06em; }
 </style>
 
 <div class="langbar" role="group" aria-label="Language / Hizkuntza">
@@ -121,14 +128,14 @@ sub, sup { line-height: 0; }
 
   <div class="box">
     <span class="lbl" style="color:var(--blue)">Statement</span>
-    <p>The <b>real gas</b> under study expands <b>freely</b>, in thermal contact with a heat reservoir at <i>T</i> = 300 K. In this process it absorbs <i>Q</i> = 50 J. After this first process the gas is compressed <b>isothermally and reversibly</b> until it recovers its initial state. In this second process the gas gives off <b>300 J</b>.</p>
+    <p>The <b>real gas</b> under study expands <b>freely</b>, in thermal contact with a heat reservoir at $T = 300\ \mathrm{K}$. In this process it absorbs $Q = 50\ \mathrm{J}$. After this first process the gas is compressed <b>isothermally and reversibly</b> until it recovers its initial state. In this second process the gas gives off <b>$300\ \mathrm{J}$</b>.</p>
     <p>Obtain: 1. the entropy change of the gas in the first process; 2. the work done by the gas in the second process.</p>
   </div>
   <details class="orig"><summary>Original (Basque)</summary>
-    <p>Aztertu beharreko gas erreala era askean zabaldu da, <i>T</i>=300 K-eko bero-iturriarekin ukipen termikoan. Prozesu horretan xurgatu duen beroa da <i>Q</i>=50 J. Lehenengo prozesu horren ondoren, gasa konprimitu dugu, era isotermo itzulgarrian; hasierako egoera berreskuratu arte. Bigarren prozesu horretan, gasak 300 J kanporatu du. Lortu honako hauek: gasaren entropia-aldaketa, lehenengo prozesuan; gasak egindako lana, bigarren prozesuan.</p>
+    <p>Aztertu beharreko gas erreala era askean zabaldu da, $T = 300\ \mathrm{K}$-eko bero-iturriarekin ukipen termikoan. Prozesu horretan xurgatu duen beroa da $Q = 50\ \mathrm{J}$. Lehenengo prozesu horren ondoren, gasa konprimitu dugu, era isotermo itzulgarrian; hasierako egoera berreskuratu arte. Bigarren prozesu horretan, gasak $300\ \mathrm{J}$ kanporatu du. Lortu honako hauek: gasaren entropia-aldaketa, lehenengo prozesuan; gasak egindako lana, bigarren prozesuan.</p>
   </details>
 
-  <p class="lede">The two states, <b>i</b> and <b>f</b>, are fixed, and so is everything the gas owns: Δ<i>U</i> = +50 J and Δ<i>S</i> = +1 J/K from i to f. What the expansion does to its surroundings is not fixed. With no load on the piston (the statement), nothing is lifted. With a load of mass <i>M</i>, the gas lifts it, the reservoir pays for that work as extra heat, and the entropy of the universe rises by less.</p>
+  <p class="lede">The two states, $\mathrm{i}$ and $\mathrm{f}$, are fixed, and so is everything the gas owns: $\Delta U = +50\ \mathrm{J}$ and $\Delta S = +1\ \mathrm{J\,K^{-1}}$ from i to f. What the expansion does to its surroundings is not fixed. With no load on the piston (the statement), nothing is lifted. With a load of mass $M$, the gas lifts it, the reservoir pays for that work as extra heat, and the entropy of the universe rises by less.</p>
 
   <div class="panels">
     <section class="panel" aria-labelledby="h-app">
@@ -221,7 +228,7 @@ sub, sup { line-height: 0; }
     </section>
 
     <section class="panel" aria-labelledby="h-pv">
-      <h2 id="h-pv">The states: p–V plane</h2>
+      <h2 id="h-pv">The states: $p$–$V$ plane</h2>
       <p class="cap">Equilibrium states only. The irreversible process 1 has none between i and f.</p>
       <svg id="pv" viewBox="0 0 520 410" role="img" aria-label="Pressure against volume: states i and f, the dotted irreversible process 1 and the reversible isotherm 2 from f back to i">
         <g id="pvAxes"></g>
@@ -242,8 +249,8 @@ sub, sup { line-height: 0; }
       <div class="legend">
         <span><i class="sw dot"></i>1 · irreversible, i → f</span>
         <span><i class="sw rev"></i>2 · reversible isotherm, f → i</span>
-        <span><i class="sw fill"></i><span>work stored in the load, <i>Mg</i>Δ<i>h</i></span></span>
-        <span><i class="sw hatch"></i><span>work lost, <i>T</i>Δ<i>S</i><sub>univ</sub></span></span>
+        <span><i class="sw fill"></i><span>work stored in the load, $Mg\,\Delta h$</span></span>
+        <span><i class="sw hatch"></i><span>work lost, $T\,\Delta S_\mathrm{univ}$</span></span>
       </div>
     </section>
   </div>
@@ -253,7 +260,7 @@ sub, sup { line-height: 0; }
       <label class="lbl" for="mass">Load on the piston during process 1</label>
       <div class="load-row">
         <input type="range" id="mass" min="0" max="36.6" step="0.01" value="0">
-        <span class="load-val" id="massVal">0.0 kg · 0.0 bar</span>
+        <span class="load-val" id="massVal">$0.0\ \mathrm{kg}$ · $0.0\ \mathrm{bar}$</span>
       </div>
       <div class="presets">
         <button class="small" id="pFree" aria-pressed="true">No load (the statement)</button>
@@ -269,7 +276,7 @@ sub, sup { line-height: 0; }
       </div>
       <div class="row">
         <button class="small" id="sReal" aria-pressed="true">Real time</button>
-        <button class="small" id="sSlow" aria-pressed="false">Slow motion, ×1/5</button>
+        <button class="small" id="sSlow" aria-pressed="false">Slow motion, $\times 1/5$</button>
       </div>
     </div>
   </div>
@@ -284,13 +291,13 @@ sub, sup { line-height: 0; }
       <table aria-label="Energy and entropy of each process and of the cycle">
         <thead><tr><th></th><th class="p1">1 · irreversible</th><th class="p2">2 · reversible</th><th>cycle</th></tr></thead>
         <tbody>
-          <tr><td>Δ<i>U</i> of the gas</td><td>+50.0 J</td><td>−50.0 J</td><td>0 J</td></tr>
-          <tr><td>Work stored in the load, <i>Mg</i>Δ<i>h</i></td><td id="w1"></td><td>−250.0 J</td><td id="wc"></td></tr>
-          <tr><td>Net heat from the reservoir</td><td id="q1"></td><td>−300.0 J</td><td id="qc"></td></tr>
-          <tr><td>Δ<i>S</i> of the gas</td><td>+1.000 J/K</td><td>−1.000 J/K</td><td>0 J/K</td></tr>
-          <tr><td>Δ<i>S</i> of the reservoir</td><td id="s1"></td><td>+1.000 J/K</td><td id="sc"></td></tr>
-          <tr class="univ"><td>Δ<i>S</i> of the universe</td><td id="u1"></td><td>0 J/K</td><td id="uc"></td></tr>
-          <tr><td>Work lost, <i>T</i>Δ<i>S</i><sub>univ</sub></td><td id="l1"></td><td>0 J</td><td id="lc"></td></tr>
+          <tr><td>$\Delta U$ of the gas</td><td>$+50.0\ \mathrm{J}$</td><td>$-50.0\ \mathrm{J}$</td><td>$0\ \mathrm{J}$</td></tr>
+          <tr><td>Work stored in the load, $Mg\,\Delta h$</td><td id="w1"></td><td>$-250.0\ \mathrm{J}$</td><td id="wc"></td></tr>
+          <tr><td>Net heat from the reservoir</td><td id="q1"></td><td>$-300.0\ \mathrm{J}$</td><td id="qc"></td></tr>
+          <tr><td>$\Delta S$ of the gas</td><td>$+1.000\ \mathrm{J\,K^{-1}}$</td><td>$-1.000\ \mathrm{J\,K^{-1}}$</td><td>$0\ \mathrm{J\,K^{-1}}$</td></tr>
+          <tr><td>$\Delta S$ of the reservoir</td><td id="s1"></td><td>$+1.000\ \mathrm{J\,K^{-1}}$</td><td id="sc"></td></tr>
+          <tr class="univ"><td>$\Delta S$ of the universe</td><td id="u1"></td><td>$0\ \mathrm{J\,K^{-1}}$</td><td id="uc"></td></tr>
+          <tr><td>Work lost, $T\,\Delta S_\mathrm{univ}$</td><td id="l1"></td><td>$0\ \mathrm{J}$</td><td id="lc"></td></tr>
         </tbody>
       </table>
     </div>
@@ -300,12 +307,12 @@ sub, sup { line-height: 0; }
   <div class="notes">
     <h3>The model behind the drawing</h3>
     <ul>
-      <li>The statement gives no equation of state. The drawing uses an abstract van der Waals gas, not any particular substance: <i>n</i> = 0.125 mol, <i>a</i> = 0.2 Pa m⁶ mol⁻², <i>b</i> = 5 × 10⁻⁵ m³ mol⁻¹, with <i>V</i><sub>i</sub> = 35.73 cm³ and <i>V</i><sub>f</sub> = 83.40 cm³ chosen so that its 300 K isotherm gives Δ<i>U</i> = 50 J, Δ<i>S</i> = 1 J/K and 250 J of work exactly. Another gas would draw other curves, but the ledger would be the same: it uses only the statement's numbers and <i>Mg</i>Δ<i>h</i>.</li>
-      <li>The piston's area is 1 cm², so the stroke is 47.7 cm and the load rises by as much. Behind the piston there is vacuum, so the only load is <i>Mg</i> and <i>p</i><sub>ext</sub> = <i>Mg</i>/<i>A</i>. Friction is ignored. A load heavier than <i>p</i><sub>f</sub><i>A</i>/<i>g</i> = 36.6 kg would stop the piston before f, so one load step stores at most <i>p</i><sub>f</sub>(<i>V</i><sub>f</sub> − <i>V</i><sub>i</sub>) = 171.3 J, short of the 250 J of the reversible expansion.</li>
-      <li>The release is computed, not drawn by hand. The piston (0.5 kg) and the load hang on an elastic cord (40 kN/m, slightly lossy). The gas pushes the piston with the isotherm's pressure, less a drag of 70 N s/m for its internal friction, where the irreversibility actually lives. This only shapes the motion: in the rush the gas has no single pressure. The piston hits the stop and rebounds a little. The load runs on, the cord goes slack, the load reaches the buffer 15 cm above or falls back, snaps the cord taut, and bobs until the cord's losses still it.</li>
-      <li>All that kinetic energy ends as heat in the 300 K surroundings, counted here with the reservoir. The reservoir's net heat is therefore Δ<i>U</i> + <i>Mg</i>Δ<i>h</i> however the piston and the load moved.</li>
-      <li>In process 2 sand is added grain by grain, so the load always balances the gas: <i>M</i> = <i>p</i>(<i>V</i>)<i>A</i>/<i>g</i>, from 36.6 kg to 82.9 kg. The descending load does 250 J of work on the gas.</li>
-      <li>The course page prints Δ<i>S</i><sub>1</sub> = 10/3 J/K. The statement's own numbers give 1 J/K: the reversible return gives off 300 J at 300 K.</li>
+      <li>The statement gives no equation of state. The drawing uses an abstract van der Waals gas, not any particular substance: $n = 0.125\ \mathrm{mol}$, $a = 0.2\ \mathrm{Pa\,m^6\,mol^{-2}}$, $b = 5\times10^{-5}\ \mathrm{m^3\,mol^{-1}}$, with $V_\mathrm{i} = 35.73\ \mathrm{cm^3}$ and $V_\mathrm{f} = 83.40\ \mathrm{cm^3}$ chosen so that its $300\ \mathrm{K}$ isotherm gives $\Delta U = 50\ \mathrm{J}$, $\Delta S = 1\ \mathrm{J\,K^{-1}}$ and $250\ \mathrm{J}$ of work exactly. Another gas would draw other curves, but the ledger would be the same: it uses only the statement's numbers and $Mg\,\Delta h$.</li>
+      <li>The piston's area is $1\ \mathrm{cm^2}$, so the stroke is $47.7\ \mathrm{cm}$ and the load rises by as much. Behind the piston there is vacuum, so the only load is $Mg$ and $p_\mathrm{ext} = Mg/A$. Friction is ignored. A load heavier than $p_\mathrm{f}A/g = 36.6\ \mathrm{kg}$ would stop the piston before f, so one load step stores at most $p_\mathrm{f}(V_\mathrm{f} - V_\mathrm{i}) = 171.3\ \mathrm{J}$, short of the $250\ \mathrm{J}$ of the reversible expansion.</li>
+      <li>The release is computed, not drawn by hand. The piston ($0.5\ \mathrm{kg}$) and the load hang on an elastic cord ($40\ \mathrm{kN\,m^{-1}}$, slightly lossy). The gas pushes the piston with the isotherm's pressure, less a drag of $70\ \mathrm{N\,s\,m^{-1}}$ for its internal friction, where the irreversibility actually lives. This only shapes the motion: in the rush the gas has no single pressure. The piston hits the stop and rebounds a little. The load runs on, the cord goes slack, the load reaches the buffer $15\ \mathrm{cm}$ above or falls back, snaps the cord taut, and bobs until the cord's losses still it.</li>
+      <li>All that kinetic energy ends as heat in the $300\ \mathrm{K}$ surroundings, counted here with the reservoir. The reservoir's net heat is therefore $\Delta U + Mg\,\Delta h$ however the piston and the load moved.</li>
+      <li>In process 2 sand is added grain by grain, so the load always balances the gas: $M = p(V)A/g$, from $36.6\ \mathrm{kg}$ to $82.9\ \mathrm{kg}$. The descending load does $250\ \mathrm{J}$ of work on the gas.</li>
+      <li>The course page prints $\Delta S_1 = 10/3\ \mathrm{J\,K^{-1}}$. The statement's own numbers give $1\ \mathrm{J\,K^{-1}}$: the reversible return gives off $300\ \mathrm{J}$ at $300\ \mathrm{K}$.</li>
     </ul>
   </div>
 </div>
@@ -318,10 +325,10 @@ sub, sup { line-height: 0; }
 
   <div class="box">
     <span class="lbl" style="color:var(--blue)">Enuntziatua</span>
-    <p>Aztertu beharreko gas erreala era askean zabaldu da, <i>T</i>=300 K-eko bero-iturriarekin ukipen termikoan. Prozesu horretan xurgatu duen beroa da <i>Q</i>=50 J. Lehenengo prozesu horren ondoren, gasa konprimitu dugu, era isotermo itzulgarrian; hasierako egoera berreskuratu arte. Bigarren prozesu horretan, gasak 300 J kanporatu du. Lortu honako hauek: gasaren entropia-aldaketa, lehenengo prozesuan; gasak egindako lana, bigarren prozesuan.</p>
+    <p>Aztertu beharreko gas erreala era askean zabaldu da, $T = 300\ \mathrm{K}$-eko bero-iturriarekin ukipen termikoan. Prozesu horretan xurgatu duen beroa da $Q = 50\ \mathrm{J}$. Lehenengo prozesu horren ondoren, gasa konprimitu dugu, era isotermo itzulgarrian; hasierako egoera berreskuratu arte. Bigarren prozesu horretan, gasak $300\ \mathrm{J}$ kanporatu du. Lortu honako hauek: gasaren entropia-aldaketa, lehenengo prozesuan; gasak egindako lana, bigarren prozesuan.</p>
   </div>
 
-  <p class="lede">Bi egoerak, <b>i</b> eta <b>f</b>, finkoak dira, eta gasari dagokion guztia ere bai: Δ<i>U</i> = +50 J eta Δ<i>S</i> = +1 J/K, i-tik f-ra. Hedapenak ingurunean eragiten duena, ordea, ez dago finkatuta. Pistoiaren gainean zamarik ez badago (enuntziatuko kasua), ez da ezer altxatzen. <i>M</i> masako zama bat badago, gasak altxatu egiten du; bero-iturriak ordaintzen du lan hori, bero gehigarri gisa, eta unibertsoaren entropia gutxiago handitzen da.</p>
+  <p class="lede">Bi egoerak, $\mathrm{i}$ eta $\mathrm{f}$, finkoak dira, eta gasari dagokion guztia ere bai: $\Delta U = +50\ \mathrm{J}$ eta $\Delta S = +1\ \mathrm{J\,K^{-1}}$, i-tik f-ra. Hedapenak ingurunean eragiten duena, ordea, ez dago finkatuta. Pistoiaren gainean zamarik ez badago (enuntziatuko kasua), ez da ezer altxatzen. $M$ masako zama bat badago, gasak altxatu egiten du; bero-iturriak ordaintzen du lan hori, bero gehigarri gisa, eta unibertsoaren entropia gutxiago handitzen da.</p>
 
   <div class="panels">
     <section class="panel" aria-labelledby="h-app">
@@ -414,7 +421,7 @@ sub, sup { line-height: 0; }
     </section>
 
     <section class="panel" aria-labelledby="h-pv">
-      <h2 id="h-pv">Egoerak: p–V planoa</h2>
+      <h2 id="h-pv">Egoerak: $p$–$V$ planoa</h2>
       <p class="cap">Oreka-egoerak baino ez. 1. prozesu itzulezinak ez du halakorik i-ren eta f-ren artean.</p>
       <svg id="pv" viewBox="0 0 520 410" role="img" aria-label="Presioa bolumenaren aurrean: i eta f egoerak, 1. prozesu itzulezina (puntuz) eta 2. isoterma itzulgarria, f-tik i-ra">
         <g id="pvAxes"></g>
@@ -435,8 +442,8 @@ sub, sup { line-height: 0; }
       <div class="legend">
         <span><i class="sw dot"></i>1 · itzulezina, i → f</span>
         <span><i class="sw rev"></i>2 · isoterma itzulgarria, f → i</span>
-        <span><i class="sw fill"></i><span>zaman metatutako lana, <i>Mg</i>Δ<i>h</i></span></span>
-        <span><i class="sw hatch"></i><span>lan galdua, <i>T</i>Δ<i>S</i><sub>univ</sub></span></span>
+        <span><i class="sw fill"></i><span>zaman metatutako lana, $Mg\,\Delta h$</span></span>
+        <span><i class="sw hatch"></i><span>lan galdua, $T\,\Delta S_\mathrm{univ}$</span></span>
       </div>
     </section>
   </div>
@@ -446,7 +453,7 @@ sub, sup { line-height: 0; }
       <label class="lbl" for="mass">Pistoiaren gaineko zama 1. prozesuan</label>
       <div class="load-row">
         <input type="range" id="mass" min="0" max="36.6" step="0.01" value="0">
-        <span class="load-val" id="massVal">0.0 kg · 0.0 bar</span>
+        <span class="load-val" id="massVal">$0.0\ \mathrm{kg}$ · $0.0\ \mathrm{bar}$</span>
       </div>
       <div class="presets">
         <button class="small" id="pFree" aria-pressed="true">Zamarik gabe (enuntziatua)</button>
@@ -462,7 +469,7 @@ sub, sup { line-height: 0; }
       </div>
       <div class="row">
         <button class="small" id="sReal" aria-pressed="true">Denbora errealean</button>
-        <button class="small" id="sSlow" aria-pressed="false">Kamera geldoan, ×1/5</button>
+        <button class="small" id="sSlow" aria-pressed="false">Kamera geldoan, $\times 1/5$</button>
       </div>
     </div>
   </div>
@@ -477,13 +484,13 @@ sub, sup { line-height: 0; }
       <table aria-label="Prozesu bakoitzaren eta zikloaren energia eta entropia">
         <thead><tr><th></th><th class="p1">1 · itzulezina</th><th class="p2">2 · itzulgarria</th><th>zikloa</th></tr></thead>
         <tbody>
-          <tr><td>Gasaren Δ<i>U</i></td><td>+50.0 J</td><td>−50.0 J</td><td>0 J</td></tr>
-          <tr><td>Zaman metatutako lana, <i>Mg</i>Δ<i>h</i></td><td id="w1"></td><td>−250.0 J</td><td id="wc"></td></tr>
-          <tr><td>Bero-iturriak emandako bero garbia</td><td id="q1"></td><td>−300.0 J</td><td id="qc"></td></tr>
-          <tr><td>Gasaren Δ<i>S</i></td><td>+1.000 J/K</td><td>−1.000 J/K</td><td>0 J/K</td></tr>
-          <tr><td>Bero-iturriaren Δ<i>S</i></td><td id="s1"></td><td>+1.000 J/K</td><td id="sc"></td></tr>
-          <tr class="univ"><td>Unibertsoaren Δ<i>S</i></td><td id="u1"></td><td>0 J/K</td><td id="uc"></td></tr>
-          <tr><td>Lan galdua, <i>T</i>Δ<i>S</i><sub>univ</sub></td><td id="l1"></td><td>0 J</td><td id="lc"></td></tr>
+          <tr><td>Gasaren $\Delta U$</td><td>$+50.0\ \mathrm{J}$</td><td>$-50.0\ \mathrm{J}$</td><td>$0\ \mathrm{J}$</td></tr>
+          <tr><td>Zaman metatutako lana, $Mg\,\Delta h$</td><td id="w1"></td><td>$-250.0\ \mathrm{J}$</td><td id="wc"></td></tr>
+          <tr><td>Bero-iturriak emandako bero garbia</td><td id="q1"></td><td>$-300.0\ \mathrm{J}$</td><td id="qc"></td></tr>
+          <tr><td>Gasaren $\Delta S$</td><td>$+1.000\ \mathrm{J\,K^{-1}}$</td><td>$-1.000\ \mathrm{J\,K^{-1}}$</td><td>$0\ \mathrm{J\,K^{-1}}$</td></tr>
+          <tr><td>Bero-iturriaren $\Delta S$</td><td id="s1"></td><td>$+1.000\ \mathrm{J\,K^{-1}}$</td><td id="sc"></td></tr>
+          <tr class="univ"><td>Unibertsoaren $\Delta S$</td><td id="u1"></td><td>$0\ \mathrm{J\,K^{-1}}$</td><td id="uc"></td></tr>
+          <tr><td>Lan galdua, $T\,\Delta S_\mathrm{univ}$</td><td id="l1"></td><td>$0\ \mathrm{J}$</td><td id="lc"></td></tr>
         </tbody>
       </table>
     </div>
@@ -493,18 +500,91 @@ sub, sup { line-height: 0; }
   <div class="notes">
     <h3>Marrazkiaren atzeko eredua</h3>
     <ul>
-      <li>Enuntziatuak ez du egoera-ekuaziorik ematen. Marrazkiak van der Waals gas abstraktu bat erabiltzen du, ez inongo substantzia jakinik: <i>n</i> = 0.125 mol, <i>a</i> = 0.2 Pa m⁶ mol⁻², <i>b</i> = 5 × 10⁻⁵ m³ mol⁻¹; <i>V</i><sub>i</sub> = 35.73 cm³ eta <i>V</i><sub>f</sub> = 83.40 cm³ balioak aukeratu dira, haren 300 K-eko isotermak zehazki Δ<i>U</i> = 50 J, Δ<i>S</i> = 1 J/K eta 250 J-eko lana eman ditzan. Beste gas batek beste kurba batzuk marraztuko lituzke, baina balantzea bera litzateke: enuntziatuko zenbakiak eta <i>Mg</i>Δ<i>h</i> baino ez ditu erabiltzen.</li>
-      <li>Pistoiaren azalera 1 cm²-koa da; beraz, ibilbidea 47.7 cm-koa da, eta zama beste horrenbeste igotzen da. Pistoiaren atzean hutsa dago; beraz, zama bakarra <i>Mg</i> da, eta <i>p</i><sub>ext</sub> = <i>Mg</i>/<i>A</i>. Marruskadura arbuiatu egiten da. <i>p</i><sub>f</sub><i>A</i>/<i>g</i> = 36.6 kg baino zama astunago batek f baino lehen geldituko luke pistoia; beraz, urrats bakarreko zama batek gehienez <i>p</i><sub>f</sub>(<i>V</i><sub>f</sub> − <i>V</i><sub>i</sub>) = 171.3 J metatzen ditu, hedapen itzulgarriaren 250 J baino gutxiago.</li>
-      <li>Askatzea kalkulatu egiten da, ez da eskuz marrazten. Pistoia (0.5 kg) eta zama soka elastiko batetik zintzilik daude (40 kN/m, galera txikiekin). Gasak isotermaren presioaz bultzatzen du pistoia, barne-marruskaduraren ondoriozko 70 N s/m-ko erresistentzia bat kenduta: hor dago, hain zuzen, itzulezintasuna. Horrek mugimenduari forma ematen dio, besterik ez: oldarraldian, gasak ez du presio bakar bat. Pistoiak topea jotzen du eta pixka bat errebotatzen du. Zamak aurrera jarraitzen du, soka lasaitu egiten da, zama 15 cm gorago dagoen moteltzaileraino iristen da edo atzera erortzen da, soka bat-batean tenkatzen du, eta gora eta behera dabil sokaren galerek geldiarazi arte.</li>
-      <li>Energia zinetiko hori guztia bero bihurtzen da 300 K-eko ingurunean, eta hemen bero-iturriarekin batera zenbatzen da. Horregatik, bero-iturriaren bero garbia Δ<i>U</i> + <i>Mg</i>Δ<i>h</i> da, pistoia eta zama nola mugitu diren gorabehera.</li>
-      <li>2. prozesuan harea alez ale gehitzen da, eta, horrela, zamak beti orekatzen du gasa: <i>M</i> = <i>p</i>(<i>V</i>)<i>A</i>/<i>g</i>, 36.6 kg-tik 82.9 kg-ra. Jaisten ari den zamak 250 J-eko lana egiten du gasaren gainean.</li>
-      <li>Ikasgaiaren orrian Δ<i>S</i><sub>1</sub> = 10/3 J/K ageri da. Enuntziatuaren beraren zenbakiek 1 J/K ematen dute: itzulera itzulgarrian 300 J kanporatzen dira 300 K-ean.</li>
+      <li>Enuntziatuak ez du egoera-ekuaziorik ematen. Marrazkiak van der Waals gas abstraktu bat erabiltzen du, ez inongo substantzia jakinik: $n = 0.125\ \mathrm{mol}$, $a = 0.2\ \mathrm{Pa\,m^6\,mol^{-2}}$, $b = 5\times10^{-5}\ \mathrm{m^3\,mol^{-1}}$; $V_\mathrm{i} = 35.73\ \mathrm{cm^3}$ eta $V_\mathrm{f} = 83.40\ \mathrm{cm^3}$ balioak aukeratu dira, haren $300\ \mathrm{K}$-eko isotermak zehazki $\Delta U = 50\ \mathrm{J}$, $\Delta S = 1\ \mathrm{J\,K^{-1}}$ eta $250\ \mathrm{J}$-eko lana eman ditzan. Beste gas batek beste kurba batzuk marraztuko lituzke, baina balantzea bera litzateke: enuntziatuko zenbakiak eta $Mg\,\Delta h$ baino ez ditu erabiltzen.</li>
+      <li>Pistoiaren azalera $1\ \mathrm{cm^2}$-koa da; beraz, ibilbidea $47.7\ \mathrm{cm}$-koa da, eta zama beste horrenbeste igotzen da. Pistoiaren atzean hutsa dago; beraz, zama bakarra $Mg$ da, eta $p_\mathrm{ext} = Mg/A$. Marruskadura arbuiatu egiten da. $p_\mathrm{f}A/g = 36.6\ \mathrm{kg}$ baino zama astunago batek f baino lehen geldituko luke pistoia; beraz, urrats bakarreko zama batek gehienez $p_\mathrm{f}(V_\mathrm{f} - V_\mathrm{i}) = 171.3\ \mathrm{J}$ metatzen ditu, hedapen itzulgarriaren $250\ \mathrm{J}$ baino gutxiago.</li>
+      <li>Askatzea kalkulatu egiten da, ez da eskuz marrazten. Pistoia ($0.5\ \mathrm{kg}$) eta zama soka elastiko batetik zintzilik daude ($40\ \mathrm{kN\,m^{-1}}$, galera txikiekin). Gasak isotermaren presioaz bultzatzen du pistoia, barne-marruskaduraren ondoriozko $70\ \mathrm{N\,s\,m^{-1}}$-ko erresistentzia bat kenduta: hor dago, hain zuzen, itzulezintasuna. Horrek mugimenduari forma ematen dio, besterik ez: oldarraldian, gasak ez du presio bakar bat. Pistoiak topea jotzen du eta pixka bat errebotatzen du. Zamak aurrera jarraitzen du, soka lasaitu egiten da, zama $15\ \mathrm{cm}$ gorago dagoen moteltzaileraino iristen da edo atzera erortzen da, soka bat-batean tenkatzen du, eta gora eta behera dabil sokaren galerek geldiarazi arte.</li>
+      <li>Energia zinetiko hori guztia bero bihurtzen da $300\ \mathrm{K}$-eko ingurunean, eta hemen bero-iturriarekin batera zenbatzen da. Horregatik, bero-iturriaren bero garbia $\Delta U + Mg\,\Delta h$ da, pistoia eta zama nola mugitu diren gorabehera.</li>
+      <li>2. prozesuan harea alez ale gehitzen da, eta, horrela, zamak beti orekatzen du gasa: $M = p(V)A/g$, $36.6\ \mathrm{kg}$-tik $82.9\ \mathrm{kg}$-ra. Jaisten ari den zamak $250\ \mathrm{J}$-eko lana egiten du gasaren gainean.</li>
+      <li>Ikasgaiaren orrian $\Delta S_1 = 10/3\ \mathrm{J\,K^{-1}}$ ageri da. Enuntziatuaren beraren zenbakiek $1\ \mathrm{J\,K^{-1}}$ ematen dute: itzulera itzulgarrian $300\ \mathrm{J}$ kanporatzen dira $300\ \mathrm{K}$-ean.</li>
     </ul>
   </div>
 </div>
 
 </template>
 <script>
+
+var XH = "http://www.w3.org/1999/xhtml", SVGNS = "http://www.w3.org/2000/svg";
+var UNIT = { "J/K": "\\mathrm{J\\,K^{-1}}", "J": "\\mathrm{J}", "K": "\\mathrm{K}", "kg": "\\mathrm{kg}",
+             "cm³": "\\mathrm{cm^3}", "cm": "\\mathrm{cm}", "bar": "\\mathrm{bar}", "mol": "\\mathrm{mol}" };
+var NUM = "([+−-]?\\d+(?:\\.\\d+)?)", UN = "(J/K|J|K|kg|cm³|cm|bar|mol)(?![\\w³/])";
+function texHTML(t) { return window.katex ? katex.renderToString(t, { throwOnError: false }) : t; }
+/* Plain run-time string -> HTML with every quantity, symbol and equation typeset. */
+function mathify(str) {
+  var store = [];
+  function tok(t) { store.push(t); return "\u0001" + (store.length - 1) + "\u0002"; }
+  function sym(v) { return v.replace("Δ", "\\Delta "); }
+  function num(n) { return n.replace("−", "-"); }
+  str = String(str)
+    .replace(/(^|[^\w])([pV]) \/ (bar|cm³)/g, function (m, a, v, u) { return a + tok(v + "\\,/\\," + UNIT[u]); })
+    .replace(new RegExp("(^|[^\\w])(Δ?[A-Za-z]) = " + NUM + " " + UN, "g"), function (m, a, v, n, u) { return a + tok(sym(v) + " = " + num(n) + "\\ " + UNIT[u]); })
+    .replace(/(^|[^\w])(Δ?[A-Za-z]) = /g, function (m, a, v) { return a + tok(sym(v) + " =") + " "; })
+    .replace(new RegExp("(^|[^\\w.])" + NUM + " " + UN, "g"), function (m, a, n, u) { return a + tok(num(n) + "\\ " + UNIT[u]); })
+    .replace(/(^|[\s,(])([pV])(?=[\s,])/g, function (m, a, v) { return a + tok(v); });
+  return str.replace(/\u0001(\d+)\u0002([,.;:)]?)/g, function (m, k, p) {
+    return p ? '<span style="white-space:nowrap">' + texHTML(store[+k]) + p + "</span>" : texHTML(store[+k]);
+  });
+}
+/* Keep a formula and the punctuation after it on one line. */
+function glue(root) {
+  root.querySelectorAll(".katex").forEach(function (k) {
+    var n = k.nextSibling;
+    if (!n || n.nodeType !== 3 || !/^[,.;:)]/.test(n.data)) return;
+    var w = document.createElement("span"); w.style.whiteSpace = "nowrap";
+    k.parentNode.insertBefore(w, k); w.appendChild(k); w.appendChild(document.createTextNode(n.data[0]));
+    n.data = n.data.slice(1);
+  });
+}
+/* SVG labels with mathematics become foreignObjects that hold KaTeX; put() and attr() keep them addressable. */
+var DYN = ["r1", "r2", "r3", "loadTxt", "tRev", "tWork", "vNowLbl"];
+function layoutFO(fo) {
+  var w = +fo.getAttribute("width"), h = +fo.getAttribute("height"), fs = +fo.getAttribute("data-fs");
+  var x = +fo.getAttribute("data-x"), y = +fo.getAttribute("data-y"), an = fo.getAttribute("data-anchor") || "start";
+  fo.setAttribute("x", an === "middle" ? x - w / 2 : an === "end" ? x - w : x);
+  fo.setAttribute("y", y - (h / 2 + 0.36 * fs));
+  fo.firstChild.style.textAlign = an === "middle" ? "center" : an === "end" ? "right" : "left";
+}
+function svgMath() {
+  document.querySelectorAll("#root svg text").forEach(function (t) {
+    var s = t.textContent, dyn = t.id && DYN.indexOf(t.id) >= 0;
+    if (!dyn && !/\d ?(J|K|kg|cm|bar|mol)(?![a-z])|=| \/ /.test(s)) return;
+    var fs = parseFloat(t.style.fontSize) || 13, w = /^r\d$/.test(t.id) ? 640 : 300, h = Math.round(fs * 2.2);
+    var fo = document.createElementNS(SVGNS, "foreignObject"), d = document.createElementNS(XH, "div");
+    fo.setAttribute("width", w); fo.setAttribute("height", h); fo.setAttribute("data-fs", fs);
+    fo.setAttribute("data-x", t.getAttribute("x")); fo.setAttribute("data-y", t.getAttribute("y"));
+    fo.setAttribute("data-anchor", t.getAttribute("text-anchor") || "start");
+    if (t.id) fo.id = t.id;
+    if (t.getAttribute("opacity") != null) fo.setAttribute("opacity", t.getAttribute("opacity"));
+    var mono = (t.getAttribute("class") || "").indexOf("mono") >= 0 || (t.parentNode.getAttribute("class") || "").indexOf("mono") >= 0;
+    d.style.cssText = "font-size:" + fs + "px;line-height:" + h + "px;white-space:nowrap;pointer-events:none;" +
+      "color:" + (t.style.fill || "var(--ink-soft)") + ";font-family:" + (t.style.fontFamily || (mono ? "var(--mono)" : "var(--sans)")) +
+      ";font-weight:" + (t.style.fontWeight || "400") + ";font-style:" + (t.style.fontStyle || "normal");
+    d.innerHTML = mathify(s);
+    fo.appendChild(d); t.parentNode.replaceChild(fo, t); layoutFO(fo);
+  });
+}
+function put(id, str) {
+  var e = document.getElementById(id);
+  if (e && e.tagName === "foreignObject") e.firstChild.innerHTML = mathify(str); else if (e) e.textContent = str;
+}
+function attr(id, k, v) {
+  var e = document.getElementById(id);
+  if (!e) return;
+  if (e.tagName !== "foreignObject") { e.setAttribute(k, v); return; }
+  if (k === "x" || k === "y") { e.setAttribute("data-" + k, v); layoutFO(e); }
+  else if (k === "text-anchor") { e.setAttribute("data-anchor", v); layoutFO(e); }
+  else e.setAttribute(k, v);
+}
+
 function runEN() {
 (function () {
   "use strict";
@@ -660,7 +740,7 @@ function runEN() {
     var bulge = Math.min(34, PXM * slack * 0.9), mid = 0.5 * (yTop + 220);
     $("cordV").setAttribute("d", "M630," + yTop + " Q" + (630 - bulge) + "," + mid + " 630,220");
     $("load").setAttribute("transform", "translate(0," + yTop + ")");
-    $("loadTxt").textContent = f1(m) + " kg";
+    put("loadTxt", f1(m) + " kg");
     ["load", "cordV", "cordH", "buffer"].forEach(function (id) { $(id).style.display = showLoad ? "" : "none"; });
     $("noLoad").style.display = showLoad ? "none" : "";
     $("ruler").style.display = showLoad && Math.abs(rise) > 2e-3 ? "" : "none";
@@ -672,9 +752,9 @@ function runEN() {
     $("latchB").setAttribute("transform", open ? "translate(0,14)" : "");
   }
   function readouts(state, V, P, m, dh, Q, note, note2) {
-    $("r1").textContent = state + " · V = " + f1(V * 1e6) + " cm³ · p = " + (P == null ? "not defined" : f1(P / 1e5) + " bar");
-    $("r2").textContent = "load " + f1(m) + " kg · raised Δh = " + f1(dh * 100) + " cm";
-    $("r3").textContent = "net heat from the reservoir: " + sgn(Q, 0) + " J";
+    put("r1", state + " · V = " + f1(V * 1e6) + " cm³ · p = " + (P == null ? "not defined" : f1(P / 1e5) + " bar"));
+    put("r2", "load " + f1(m) + " kg · raised Δh = " + f1(dh * 100) + " cm");
+    put("r3", "net heat from the reservoir: " + sgn(Q, 0) + " J");
     $("r4").textContent = note || "";
     $("r5").textContent = note2 || "";
   }
@@ -683,8 +763,8 @@ function runEN() {
     $("vNow").setAttribute("x1", x); $("vNow").setAttribute("x2", x);
     $("vNow").setAttribute("y1", 30); $("vNow").setAttribute("y2", 360);
     $("vNow").setAttribute("opacity", show ? 1 : 0);
-    $("vNowLbl").setAttribute("x", Math.min(x + 6, 350)); $("vNowLbl").setAttribute("y", 44);
-    $("vNowLbl").setAttribute("opacity", show ? 1 : 0);
+    attr("vNowLbl", "x", Math.min(x + 6, 350)); attr("vNowLbl", "y", 44);
+    attr("vNowLbl", "opacity", show ? 1 : 0);
   }
   function mark(V, show) {
     $("mark").setAttribute("cx", PVx(V)); $("mark").setAttribute("cy", PVy(p(V)));
@@ -694,33 +774,34 @@ function runEN() {
   // ---- ledger and the work rectangle follow the load ----
   function ledger() {
     var W = M * g * stroke, Q1 = DU + W, S1 = -Q1 / T, U1 = DS + S1, lost = 250 - W;
-    $("w1").textContent = sgn(W, 1) + " J";
-    $("q1").textContent = sgn(Q1, 1) + " J";
-    $("s1").textContent = sgn(S1, 3) + " J/K";
-    $("u1").textContent = sgn(U1, 3) + " J/K";
-    $("l1").textContent = f1(T * U1) + " J";
-    $("wc").textContent = sgn(W + W2, 1) + " J";
-    $("qc").textContent = sgn(Q1 + Q2, 1) + " J";
-    $("sc").textContent = sgn(S1 + 1, 3) + " J/K";
-    $("uc").textContent = sgn(U1, 3) + " J/K";
-    $("lc").textContent = f1(T * U1) + " J";
+    $("w1").innerHTML = mathify(sgn(W, 1) + " J");
+    $("q1").innerHTML = mathify(sgn(Q1, 1) + " J");
+    $("s1").innerHTML = mathify(sgn(S1, 3) + " J/K");
+    $("u1").innerHTML = mathify(sgn(U1, 3) + " J/K");
+    $("l1").innerHTML = mathify(f1(T * U1) + " J");
+    $("wc").innerHTML = mathify(sgn(W + W2, 1) + " J");
+    $("qc").innerHTML = mathify(sgn(Q1 + Q2, 1) + " J");
+    $("sc").innerHTML = mathify(sgn(S1 + 1, 3) + " J/K");
+    $("uc").innerHTML = mathify(sgn(U1, 3) + " J/K");
+    $("lc").innerHTML = mathify(f1(T * U1) + " J");
     $("verdict").innerHTML = (M === 0
       ? "With no load the expansion stores no work. The reservoir supplies only the 50 J the gas needs, and the universe gains <b>0.833 J/K</b>."
       : "The load stores <b>" + f1(W) + " J</b>. The reservoir pays for it: it supplies " + f1(Q1) + " J instead of 50 J, and the universe gains only <b>" + U1.toFixed(3) + " J/K</b>.")
       + " Over the cycle the loads lose " + f1(lost) + " J of potential energy and the reservoir gains " + f1(lost) + " J of heat: work turned into heat, never the reverse (Kelvin–Planck). Only a reversible expansion, storing 250 J, would leave nothing behind.";
+    $("verdict").innerHTML = mathify($("verdict").innerHTML);
     var pe = M * g / A, x0 = PVx(Vi), x1 = PVx(Vf), y = PVy(pe);
     var r = $("aWork");
     r.setAttribute("x", x0); r.setAttribute("width", x1 - x0); r.setAttribute("y", y); r.setAttribute("height", Math.max(0, 360 - y));
     r.style.display = M > 0 ? "" : "none";
     var Vl = Vi + 0.25 * (Vf - Vi);
-    $("tRev").textContent = "lost " + f1(lost) + " J";
-    $("tRev").setAttribute("x", PVx(Vl)); $("tRev").setAttribute("text-anchor", "middle");
-    $("tRev").setAttribute("y", 0.5 * (PVy(p(Vl)) + Math.min(y, 360)) + 5);
-    $("tWork").textContent = M > 0 ? "stored " + f1(W) + " J" : "";
-    $("tWork").setAttribute("x", 0.5 * (x0 + x1)); $("tWork").setAttribute("text-anchor", "middle");
-    $("tWork").setAttribute("y", 360 - y < 24 ? y - 6 : y + Math.min(26, (360 - y) / 2 + 5));
+    put("tRev", "lost " + f1(lost) + " J");
+    attr("tRev", "x", PVx(Vl)); attr("tRev", "text-anchor", "middle");
+    attr("tRev", "y", 0.5 * (PVy(p(Vl)) + Math.min(y, 360)) + 5);
+    put("tWork", M > 0 ? "stored " + f1(W) + " J" : "");
+    attr("tWork", "x", 0.5 * (x0 + x1)); attr("tWork", "text-anchor", "middle");
+    attr("tWork", "y", 360 - y < 24 ? y - 6 : y + Math.min(26, (360 - y) / 2 + 5));
     $("mass").setAttribute("aria-valuetext", f1(M) + " kilograms");
-    $("massVal").textContent = f1(M) + " kg · " + f1(pe / 1e5) + " bar";
+    $("massVal").innerHTML = mathify(f1(M) + " kg · " + f1(pe / 1e5) + " bar");
     ["pFree", "pHalf", "pFull"].forEach(function (id, k) {
       $(id).setAttribute("aria-pressed", Math.abs(M - [0, Mmax / 2, Mmax][k]) < 0.02 ? "true" : "false");
     });
@@ -821,6 +902,7 @@ function runEN() {
   $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
   showLedger(store("ex20-ledger") !== "0");
 
+  svgMath();
   ledger(); atI();
 })();
 }
@@ -979,7 +1061,7 @@ function runEU() {
     var bulge = Math.min(34, PXM * slack * 0.9), mid = 0.5 * (yTop + 220);
     $("cordV").setAttribute("d", "M630," + yTop + " Q" + (630 - bulge) + "," + mid + " 630,220");
     $("load").setAttribute("transform", "translate(0," + yTop + ")");
-    $("loadTxt").textContent = f1(m) + " kg";
+    put("loadTxt", f1(m) + " kg");
     ["load", "cordV", "cordH", "buffer"].forEach(function (id) { $(id).style.display = showLoad ? "" : "none"; });
     $("noLoad").style.display = showLoad ? "none" : "";
     $("ruler").style.display = showLoad && Math.abs(rise) > 2e-3 ? "" : "none";
@@ -991,9 +1073,9 @@ function runEU() {
     $("latchB").setAttribute("transform", open ? "translate(0,14)" : "");
   }
   function readouts(state, V, P, m, dh, Q, note, note2) {
-    $("r1").textContent = state + " · V = " + f1(V * 1e6) + " cm³ · p = " + (P == null ? "definitu gabe" : f1(P / 1e5) + " bar");
-    $("r2").textContent = "zama " + f1(m) + " kg · igoera Δh = " + f1(dh * 100) + " cm";
-    $("r3").textContent = "bero-iturriak emandako bero garbia: " + sgn(Q, 0) + " J";
+    put("r1", state + " · V = " + f1(V * 1e6) + " cm³ · p = " + (P == null ? "definitu gabe" : f1(P / 1e5) + " bar"));
+    put("r2", "zama " + f1(m) + " kg · igoera Δh = " + f1(dh * 100) + " cm");
+    put("r3", "bero-iturriak emandako bero garbia: " + sgn(Q, 0) + " J");
     $("r4").textContent = note || "";
     $("r5").textContent = note2 || "";
   }
@@ -1002,8 +1084,8 @@ function runEU() {
     $("vNow").setAttribute("x1", x); $("vNow").setAttribute("x2", x);
     $("vNow").setAttribute("y1", 30); $("vNow").setAttribute("y2", 360);
     $("vNow").setAttribute("opacity", show ? 1 : 0);
-    $("vNowLbl").setAttribute("x", Math.min(x + 6, 350)); $("vNowLbl").setAttribute("y", 44);
-    $("vNowLbl").setAttribute("opacity", show ? 1 : 0);
+    attr("vNowLbl", "x", Math.min(x + 6, 350)); attr("vNowLbl", "y", 44);
+    attr("vNowLbl", "opacity", show ? 1 : 0);
   }
   function mark(V, show) {
     $("mark").setAttribute("cx", PVx(V)); $("mark").setAttribute("cy", PVy(p(V)));
@@ -1013,33 +1095,34 @@ function runEU() {
   // ---- ledger and the work rectangle follow the load ----
   function ledger() {
     var W = M * g * stroke, Q1 = DU + W, S1 = -Q1 / T, U1 = DS + S1, lost = 250 - W;
-    $("w1").textContent = sgn(W, 1) + " J";
-    $("q1").textContent = sgn(Q1, 1) + " J";
-    $("s1").textContent = sgn(S1, 3) + " J/K";
-    $("u1").textContent = sgn(U1, 3) + " J/K";
-    $("l1").textContent = f1(T * U1) + " J";
-    $("wc").textContent = sgn(W + W2, 1) + " J";
-    $("qc").textContent = sgn(Q1 + Q2, 1) + " J";
-    $("sc").textContent = sgn(S1 + 1, 3) + " J/K";
-    $("uc").textContent = sgn(U1, 3) + " J/K";
-    $("lc").textContent = f1(T * U1) + " J";
+    $("w1").innerHTML = mathify(sgn(W, 1) + " J");
+    $("q1").innerHTML = mathify(sgn(Q1, 1) + " J");
+    $("s1").innerHTML = mathify(sgn(S1, 3) + " J/K");
+    $("u1").innerHTML = mathify(sgn(U1, 3) + " J/K");
+    $("l1").innerHTML = mathify(f1(T * U1) + " J");
+    $("wc").innerHTML = mathify(sgn(W + W2, 1) + " J");
+    $("qc").innerHTML = mathify(sgn(Q1 + Q2, 1) + " J");
+    $("sc").innerHTML = mathify(sgn(S1 + 1, 3) + " J/K");
+    $("uc").innerHTML = mathify(sgn(U1, 3) + " J/K");
+    $("lc").innerHTML = mathify(f1(T * U1) + " J");
     $("verdict").innerHTML = (M === 0
       ? "Zamarik gabe, hedapenak ez du lanik metatzen. Bero-iturriak gasak behar dituen 50 J baino ez ditu ematen, eta unibertsoaren entropia <b>0.833 J/K</b> handitzen da."
       : "Zamak <b>" + f1(W) + " J</b> metatzen ditu. Bero-iturriak ordaintzen du: 50 J-en ordez " + f1(Q1) + " J ematen ditu, eta unibertsoaren entropia <b>" + U1.toFixed(3) + " J/K</b> baino ez da handitzen.")
       + " Ziklo osoan, zamek " + f1(lost) + " J energia potentzial galtzen dituzte, eta bero-iturriak " + f1(lost) + " J bero irabazten ditu: lana bero bihurtzen da, inoiz ez alderantziz (Kelvin–Planck). Hedapen itzulgarri batek bakarrik, 250 J metatuz, ez luke arrastorik utziko.";
+    $("verdict").innerHTML = mathify($("verdict").innerHTML);
     var pe = M * g / A, x0 = PVx(Vi), x1 = PVx(Vf), y = PVy(pe);
     var r = $("aWork");
     r.setAttribute("x", x0); r.setAttribute("width", x1 - x0); r.setAttribute("y", y); r.setAttribute("height", Math.max(0, 360 - y));
     r.style.display = M > 0 ? "" : "none";
     var Vl = Vi + 0.25 * (Vf - Vi);
-    $("tRev").textContent = "galdua: " + f1(lost) + " J";
-    $("tRev").setAttribute("x", PVx(Vl)); $("tRev").setAttribute("text-anchor", "middle");
-    $("tRev").setAttribute("y", 0.5 * (PVy(p(Vl)) + Math.min(y, 360)) + 5);
-    $("tWork").textContent = M > 0 ? "metatua: " + f1(W) + " J" : "";
-    $("tWork").setAttribute("x", 0.5 * (x0 + x1)); $("tWork").setAttribute("text-anchor", "middle");
-    $("tWork").setAttribute("y", 360 - y < 24 ? y - 6 : y + Math.min(26, (360 - y) / 2 + 5));
+    put("tRev", "galdua: " + f1(lost) + " J");
+    attr("tRev", "x", PVx(Vl)); attr("tRev", "text-anchor", "middle");
+    attr("tRev", "y", 0.5 * (PVy(p(Vl)) + Math.min(y, 360)) + 5);
+    put("tWork", M > 0 ? "metatua: " + f1(W) + " J" : "");
+    attr("tWork", "x", 0.5 * (x0 + x1)); attr("tWork", "text-anchor", "middle");
+    attr("tWork", "y", 360 - y < 24 ? y - 6 : y + Math.min(26, (360 - y) / 2 + 5));
     $("mass").setAttribute("aria-valuetext", f1(M) + " kilogramo");
-    $("massVal").textContent = f1(M) + " kg · " + f1(pe / 1e5) + " bar";
+    $("massVal").innerHTML = mathify(f1(M) + " kg · " + f1(pe / 1e5) + " bar");
     ["pFree", "pHalf", "pFull"].forEach(function (id, k) {
       $(id).setAttribute("aria-pressed", Math.abs(M - [0, Mmax / 2, Mmax][k]) < 0.02 ? "true" : "false");
     });
@@ -1140,16 +1223,18 @@ function runEU() {
   $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
   showLedger(store("ex20-eu-ledger") !== "0");
 
+  svgMath();
   ledger(); atI();
 })();
 }
 (function () {
   "use strict";
-  var TITLES = { en: "A real gas expands and is brought back", eu: null };
   function setLang(l) {
     var root = document.getElementById("root");
     root.innerHTML = "";
     root.appendChild(document.getElementById("tpl-" + l).content.cloneNode(true));
+    if (window.renderMathInElement) renderMathInElement(root, { delimiters: [{ left: "$", right: "$", display: false }], throwOnError: false });
+    glue(root);
     document.documentElement.lang = l;
     document.getElementById("langEN").setAttribute("aria-pressed", l === "en" ? "true" : "false");
     document.getElementById("langEU").setAttribute("aria-pressed", l === "eu" ? "true" : "false");
